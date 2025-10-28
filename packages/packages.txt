@@ -1,0 +1,122 @@
+# Voidance Package List
+# Base packages for ISO build
+
+# ===== Base System =====
+base-system
+linux
+linux-firmware
+intel-ucode
+amd-ucode
+grub
+efibootmgr
+
+# ===== Wayland & Hyprland =====
+hyprland
+xdg-desktop-portal-hyprland
+waybar
+walker
+mako
+hyprpaper
+hyprlock
+hypridle
+polkit-gnome
+
+# ===== Audio =====
+pipewire
+wireplumber
+pavucontrol
+alsa-utils
+
+# ===== Networking =====
+NetworkManager
+network-manager-applet
+bluez
+bluez-alsa
+
+# ===== File Management =====
+thunar
+thunar-volman
+thunar-archive-plugin
+gvfs
+gvfs-mtp
+gvfs-smb
+xarchiver
+zip
+unzip
+p7zip
+
+# ===== Terminal & Shell =====
+alacritty
+zsh
+zsh-completions
+starship
+
+# ===== Editors =====
+neovim
+nano
+
+# ===== Browsers =====
+firefox
+
+# ===== Media =====
+mpv
+imv
+zathura
+zathura-pdf-poppler
+
+# ===== Development Tools =====
+git
+gcc
+make
+cmake
+python3
+python3-pip
+nodejs
+npm
+go
+
+# ===== System Utilities =====
+htop
+btop
+neofetch
+tree
+fzf
+ripgrep
+fd
+bat
+eza
+
+# ===== Screen Capture =====
+grim
+slurp
+wl-clipboard
+
+# ===== Fonts =====
+noto-fonts
+noto-fonts-emoji
+font-awesome6
+
+# ===== GTK & Themes =====
+gtk+3
+gtk4
+papirus-icon-theme
+lxappearance
+
+# ===== Power Management =====
+tlp
+acpid
+
+# ===== Security =====
+cryptsetup
+gnupg2
+sudo
+doas
+
+# ===== Misc =====
+xdg-utils
+xdg-user-dirs
+polkit
+wget
+curl
+rsync
+

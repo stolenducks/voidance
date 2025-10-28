@@ -1,0 +1,34 @@
+# Built ISO files
+*.iso
+*.iso.sha256
+
+# Build artifacts
+iso-builder/tmp/
+iso-builder/build/
+
+# Docker volumes
+.docker/
+
+# Build artifacts
+*.iso
+*.img
+iso-builder/tmp/
+iso-builder/build/
+
+# macOS
+.DS_Store
+._*
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temp files
+tmp/
+temp/

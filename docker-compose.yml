@@ -1,0 +1,20 @@
+services:
+  voidance-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: voidance-builder:latest
+    container_name: voidance-builder
+    privileged: true
+    volumes:
+      - .:/workspace
+      # Persist build cache
+      - voidance-cache:/var/cache/xbps
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  voidance-cache:
+    driver: local
