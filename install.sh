@@ -27,7 +27,7 @@ fi
 # Download and run transform script
 echo "📥 Downloading Voidance transformation script..."
 curl -L -o /tmp/voidance-transform.sh \
-    https://raw.githubusercontent.com/dolandstutts/voidance/main/scripts/transform.sh
+    https://raw.githubusercontent.com/stolenducks/voidance/main/scripts/transform.sh
 
 chmod +x /tmp/voidance-transform.sh
 

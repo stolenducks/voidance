@@ -35,7 +35,7 @@
 1. Install base Void Linux
 2. Run one command:
    ```bash
-   curl -L https://raw.githubusercontent.com/dolandstutts/voidance/main/install.sh | sh
+curl -L https://raw.githubusercontent.com/stolenducks/voidance/main/install.sh | sh
    ```
 3. Reboot → Hyprland auto-starts
 

@@ -27,7 +27,7 @@ VOIDANCE_ART='
 
 # Configuration
 VOIDANCE_DIR="$HOME/.local/share/voidance"
-VOIDANCE_REPO="${VOIDANCE_REPO:-dolandstutts/voidance}"
+VOIDANCE_REPO="${VOIDANCE_REPO:-stolenducks/voidance}"
 VOIDANCE_BRANCH="${VOIDANCE_BRANCH:-main}"
 HEADLESS_MODE=false
 LOG_FILE="/tmp/voidance-install.log"

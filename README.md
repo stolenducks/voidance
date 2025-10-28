@@ -68,7 +68,7 @@ Voidance is **inspired by** [Omarchy](https://github.com/basecamp/omarchy) but a
 
 3. **Run the auto-installer**
    ```bash
-   curl -L https://raw.githubusercontent.com/dolandstutts/voidance/main/scripts/auto-install.sh | bash
+curl -L https://raw.githubusercontent.com/stolenducks/voidance/main/scripts/auto-install.sh | bash
    ```
 
 4. **Follow the prompts**
@@ -86,7 +86,7 @@ Hyprland starts automatically on login. Done! 🎉
 Already have Void Linux installed? Transform it:
 
 ```bash
-curl -L https://raw.githubusercontent.com/dolandstutts/voidance/main/install.sh | sh
+curl -L https://raw.githubusercontent.com/stolenducks/voidance/main/install.sh | sh
 ```
 
 ---

@@ -275,7 +275,7 @@ warning "This will take 10-20 minutes..."
 
 # Copy package list to system
 curl -L -o /mnt/tmp/voidance-packages.txt \
-    https://raw.githubusercontent.com/dolandstutts/voidance/main/packages/packages.txt || \
+    https://raw.githubusercontent.com/stolenducks/voidance/main/packages/packages.txt
     error "Failed to download package list"
 
 # Install packages
@@ -294,7 +294,7 @@ info "Configuring Voidance..."
 # Download and run transform script as user
 chroot /mnt su - "$USERNAME" -c "
     curl -L -o /tmp/transform.sh \
-        https://raw.githubusercontent.com/dolandstutts/voidance/main/scripts/transform.sh
+        https://raw.githubusercontent.com/stolenducks/voidance/main/scripts/transform.sh
     chmod +x /tmp/transform.sh
     /tmp/transform.sh --headless
 " || warning "Transform script had issues"

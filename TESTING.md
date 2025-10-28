@@ -80,7 +80,7 @@ qemu-system-x86_64 \
 4. **Transform to Voidance**
    ```bash
    # Login as your user
-   curl -L https://raw.githubusercontent.com/dolandstutts/voidance/main/install.sh | sh
+curl -L https://raw.githubusercontent.com/stolenducks/voidance/main/install.sh | sh
    ```
 
 5. **Test Hyprland**
