@@ -9,7 +9,7 @@ echo "====================="
 echo ""
 
 # Check if we're on Void Linux
-if [ ! -f /etc/os-release ] || ! grep -q "ID=void" /etc/os-release; then
+if [ ! -f /etc/os-release ] || ! grep -qi "void" /etc/os-release; then
     echo "❌ Error: This script only works on Void Linux!"
     echo "Please install Void Linux first: https://voidlinux.org"
     exit 1

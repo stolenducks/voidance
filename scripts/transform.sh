@@ -75,7 +75,7 @@ check_void_linux() {
         exit 1
     fi
     
-    if ! grep -q "ID=void" /etc/os-release; then
+    if ! grep -qi "void" /etc/os-release; then
         print_error "This script only works on Void Linux!"
         print_info "Detected OS: $(grep '^PRETTY_NAME' /etc/os-release | cut -d'"' -f2)"
         exit 1
