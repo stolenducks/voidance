@@ -1,6 +1,6 @@
 #!/bin/sh
 # Voidance One-Line Installer
-# curl -L https://raw.githubusercontent.com/dolandstutts/voidance/main/install.sh | sh
+# curl -L https://raw.githubusercontent.com/stolenducks/voidance/main/install.sh | sh
 
 set -e
 
