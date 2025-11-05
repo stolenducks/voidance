@@ -57,16 +57,52 @@ else
     warn "AI assets already fetched, skipping download"
 fi
 
-# Step 2: Prepare rootfs overlay
-info "Step 2/4: Preparing rootfs overlay..."
+# Step 2: Build llama.cpp
+info "Step 2/5: Building llama.cpp..."
+LLAMA_BUILD_DIR="${BUILD_DIR}/llama.cpp"
+
+if [[ ! -f "${LLAMA_BUILD_DIR}/llama-server" ]]; then
+    info "Cloning llama.cpp repository..."
+    rm -rf "${LLAMA_BUILD_DIR}"
+    git clone --depth 1 https://github.com/ggerganov/llama.cpp "${LLAMA_BUILD_DIR}"
+    
+    info "Building llama-server (this may take 5-10 minutes)..."
+    cd "${LLAMA_BUILD_DIR}"
+    make -j$(nproc) llama-server
+    
+    if [[ ! -f "llama-server" ]]; then
+        error "Failed to build llama-server"
+        exit 1
+    fi
+    
+    info "llama-server built successfully"
+else
+    info "llama-server already built, skipping"
+fi
+
+cd "${PROJECT_ROOT}"
+
+# Step 3: Prepare rootfs overlay
+info "Step 3/5: Preparing rootfs overlay..."
 rm -rf "${ROOTFS_OVERLAY}"
 mkdir -p "${ROOTFS_OVERLAY}"
 
-# Copy AI helper files
-info "Copying droid CLI..."
+# Copy llama-server binary
+info "Copying llama-server binary..."
 mkdir -p "${ROOTFS_OVERLAY}/usr/local/bin"
+cp "${LLAMA_BUILD_DIR}/llama-server" "${ROOTFS_OVERLAY}/usr/local/bin/"
+chmod +x "${ROOTFS_OVERLAY}/usr/local/bin/llama-server"
+
+# Copy droid CLI
+info "Copying droid CLI..."
 cp "${PROJECT_ROOT}/rootfs/usr/local/bin/droid" "${ROOTFS_OVERLAY}/usr/local/bin/"
 chmod +x "${ROOTFS_OVERLAY}/usr/local/bin/droid"
+
+# Copy llama-server service
+info "Copying llama-server service..."
+mkdir -p "${ROOTFS_OVERLAY}/etc/sv/llama-server"
+cp "${PROJECT_ROOT}/rootfs/etc/sv/llama-server/run" "${ROOTFS_OVERLAY}/etc/sv/llama-server/"
+chmod +x "${ROOTFS_OVERLAY}/etc/sv/llama-server/run"
 
 # Copy droid-firstboot service
 info "Copying first-boot service..."
@@ -78,12 +114,10 @@ chmod +x "${ROOTFS_OVERLAY}/etc/sv/droid-firstboot/run"
 mkdir -p "${ROOTFS_OVERLAY}/etc/runit/runsvdir/default"
 ln -sf /etc/sv/droid-firstboot "${ROOTFS_OVERLAY}/etc/runit/runsvdir/default/droid-firstboot"
 
-# Copy AI assets
-info "Copying AI model and docs..."
+# Copy AI model
+info "Copying AI model..."
 mkdir -p "${ROOTFS_OVERLAY}/opt/droid/models"
-cp "${PROJECT_ROOT}/rootfs/opt/droid/Modelfile" "${ROOTFS_OVERLAY}/opt/droid/"
 
-# Copy model if it exists
 if [[ -f "${PROJECT_ROOT}/iso-builder/ai-assets/models/qwen2.5-coder-3b-instruct.Q4_K_M.gguf" ]]; then
     info "Embedding AI model into ISO (~2GB, this may take a minute)..."
     cp "${PROJECT_ROOT}/iso-builder/ai-assets/models/"*.gguf "${ROOTFS_OVERLAY}/opt/droid/models/"
@@ -98,8 +132,8 @@ if [[ -d "${PROJECT_ROOT}/iso-builder/ai-assets/void-docs" ]]; then
     cp -r "${PROJECT_ROOT}/iso-builder/ai-assets/void-docs" "${ROOTFS_OVERLAY}/opt/"
 fi
 
-# Step 3: Prepare package list
-info "Step 3/4: Preparing package list..."
+# Step 4: Prepare package list
+info "Step 4/5: Preparing package list..."
 if [[ ! -f "${PACKAGE_LIST}" ]]; then
     error "Package list not found: ${PACKAGE_LIST}"
     exit 1
@@ -113,8 +147,8 @@ while IFS= read -r line; do
     PKG_ARGS="${PKG_ARGS} -p ${line}"
 done < "${PACKAGE_LIST}"
 
-# Step 4: Build ISO with void-mklive
-info "Step 4/4: Building ISO with void-mklive..."
+# Step 5: Build ISO with void-mklive
+info "Step 5/5: Building ISO with void-mklive..."
 info "This may take 15-30 minutes depending on your system..."
 echo ""
 

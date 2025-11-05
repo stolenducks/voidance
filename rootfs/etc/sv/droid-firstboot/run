@@ -1,13 +1,13 @@
 #!/bin/bash
 # droid-firstboot - One-time setup service for AI helper
-# Runs once on first boot to initialize the ollama model
+# Runs once on first boot to initialize llama-server
 
 set -euo pipefail
 
 INITIALIZED_FLAG="/var/lib/droid/initialized"
 DROID_DIR="/opt/droid"
-MODEL_NAME="void-qwen"
-MODELFILE="$DROID_DIR/Modelfile"
+MODEL_PATH="$DROID_DIR/models/qwen2.5-coder-3b-instruct.Q4_K_M.gguf"
+LLAMA_SERVER="http://localhost:8080"
 
 # Log function
 log() {
@@ -25,53 +25,47 @@ fi
 
 log "Initializing droid AI helper..."
 
-# Ensure ollama service exists
-if [ ! -d /etc/sv/ollama ]; then
-    log "ERROR: ollama service not found"
+# Ensure llama-server service exists
+if [ ! -d /etc/sv/llama-server ]; then
+    log "ERROR: llama-server service not found"
     exit 1
 fi
 
-# Enable ollama service
-if [ ! -L /var/service/ollama ]; then
-    log "Enabling ollama service..."
-    ln -sf /etc/sv/ollama /var/service/
+# Check if model exists
+if [ ! -f "$MODEL_PATH" ]; then
+    log "ERROR: Model not found at $MODEL_PATH"
+    exit 1
 fi
 
-# Wait for ollama to be ready (max 30 seconds)
-log "Waiting for ollama to start..."
+# Enable llama-server service
+if [ ! -L /var/service/llama-server ]; then
+    log "Enabling llama-server service..."
+    ln -sf /etc/sv/llama-server /var/service/
+fi
+
+# Wait for llama-server to be ready (max 30 seconds)
+log "Waiting for llama-server to start..."
 for i in {1..30}; do
-    if ollama list &>/dev/null 2>&1; then
-        log "Ollama is ready"
+    if curl -s "$LLAMA_SERVER/health" &>/dev/null 2>&1; then
+        log "llama-server is ready"
         break
     fi
     if [ $i -eq 30 ]; then
-        log "ERROR: Ollama failed to start within 30 seconds"
+        log "ERROR: llama-server failed to start within 30 seconds"
         exit 1
     fi
     sleep 1
 done
 
-# Create model from local GGUF if it doesn't exist
-if ! ollama list | grep -q "$MODEL_NAME"; then
-    if [ -f "$MODELFILE" ]; then
-        log "Creating $MODEL_NAME model from local GGUF..."
-        cd "$DROID_DIR"
-        if ollama create "$MODEL_NAME" -f "$MODELFILE"; then
-            log "Model created successfully"
-            
-            # Optional: pre-warm the model to reduce first-query latency
-            log "Pre-warming model..."
-            echo "test" | ollama run "$MODEL_NAME" --verbose=false >/dev/null 2>&1 || true
-        else
-            log "ERROR: Failed to create model"
-            exit 1
-        fi
-    else
-        log "ERROR: Modelfile not found at $MODELFILE"
-        exit 1
-    fi
+# Test the model with a simple query
+log "Testing model..."
+if curl -s "$LLAMA_SERVER/v1/chat/completions" \
+    -H "Content-Type: application/json" \
+    -d '{"messages":[{"role":"user","content":"test"}],"max_tokens":5}' \
+    &>/dev/null; then
+    log "Model responding successfully"
 else
-    log "Model $MODEL_NAME already exists"
+    log "WARNING: Model test failed, but continuing"
 fi
 
 # Mark as initialized

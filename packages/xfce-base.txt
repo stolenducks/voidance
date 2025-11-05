@@ -36,11 +36,11 @@ ca-certificates
 # ===========================================
 # AI Helper Dependencies (ONLY additions to stock)
 # ===========================================
-# Note: ollama is not in Void repos - will need custom build/packaging
-# For now, documenting what we need:
-# - ollama (custom package or install script)
+# llama.cpp built during ISO creation (no package needed)
+# Just need utilities for droid CLI:
 ripgrep
 jq
+curl  # For HTTP API calls to llama-server
 
 # ===========================================
 # Optional: ThinkPad & Laptop Friendliness

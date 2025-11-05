@@ -1,0 +1,44 @@
+#!/bin/bash
+# llama-server runit service
+# Runs llama.cpp server with Qwen 2.5 Coder 3B model
+
+exec 2>&1
+
+MODEL_PATH="/opt/droid/models/qwen2.5-coder-3b-instruct.Q4_K_M.gguf"
+PORT=8080
+HOST="127.0.0.1"
+THREADS=4  # Adjust based on CPU cores
+
+# Check if model exists
+if [ ! -f "$MODEL_PATH" ]; then
+    echo "[llama-server] ERROR: Model not found at $MODEL_PATH"
+    exit 1
+fi
+
+# Check if llama-server binary exists
+if [ ! -x /usr/local/bin/llama-server ]; then
+    echo "[llama-server] ERROR: llama-server binary not found"
+    exit 1
+fi
+
+echo "[llama-server] Starting llama.cpp server..."
+echo "[llama-server] Model: $MODEL_PATH"
+echo "[llama-server] Port: $PORT"
+echo "[llama-server] Threads: $THREADS"
+
+# Run llama-server
+# Options:
+#   --model: Path to GGUF model
+#   --host: Listen address (127.0.0.1 for local only)
+#   --port: Port number
+#   --threads: Number of CPU threads
+#   --ctx-size: Context size (4096 tokens)
+#   --batch-size: Batch size for processing
+exec /usr/local/bin/llama-server \
+    --model "$MODEL_PATH" \
+    --host "$HOST" \
+    --port "$PORT" \
+    --threads "$THREADS" \
+    --ctx-size 4096 \
+    --batch-size 512 \
+    --log-disable
