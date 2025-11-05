@@ -1,0 +1,57 @@
+# Void Linux XFCE - AI Edition Package List
+# Matches official void-live-x86_64-xfce.iso with minimal AI helper additions
+
+# ===========================================
+# Base System (matches upstream XFCE profile)
+# ===========================================
+base-system
+linux
+linux-firmware
+intel-ucode
+grub
+efibootmgr
+
+# ===========================================
+# XFCE Desktop Environment
+# ===========================================
+xfce4
+xfce4-plugins
+lightdm
+lightdm-gtk3-greeter
+
+# ===========================================
+# Network & Connectivity
+# ===========================================
+NetworkManager
+network-manager-applet
+
+# ===========================================
+# Core Utilities (minimal)
+# ===========================================
+nano
+curl
+wget
+ca-certificates
+
+# ===========================================
+# AI Helper Dependencies (ONLY additions to stock)
+# ===========================================
+# Note: ollama is not in Void repos - will need custom build/packaging
+# For now, documenting what we need:
+# - ollama (custom package or install script)
+ripgrep
+jq
+
+# ===========================================
+# Optional: ThinkPad & Laptop Friendliness
+# (Can be removed for ultra-minimal system)
+# ===========================================
+tlp
+fwupd
+
+# ===========================================
+# FORBIDDEN: Do NOT add these
+# ===========================================
+# hyprland, waybar, walker, mako, hyprpaper
+# plasma*, kde*, sddm
+# nodejs, npm, go, rust (unless upstream includes them)

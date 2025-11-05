@@ -1,0 +1,87 @@
+#!/bin/bash
+# droid-firstboot - One-time setup service for AI helper
+# Runs once on first boot to initialize the ollama model
+
+set -euo pipefail
+
+INITIALIZED_FLAG="/var/lib/droid/initialized"
+DROID_DIR="/opt/droid"
+MODEL_NAME="void-qwen"
+MODELFILE="$DROID_DIR/Modelfile"
+
+# Log function
+log() {
+    logger -t droid-firstboot "$*"
+    echo "[droid-firstboot] $*"
+}
+
+# Check if already initialized
+if [ -f "$INITIALIZED_FLAG" ]; then
+    log "Already initialized, exiting"
+    # Remove ourselves from /var/service
+    rm -f /var/service/droid-firstboot
+    exit 0
+fi
+
+log "Initializing droid AI helper..."
+
+# Ensure ollama service exists
+if [ ! -d /etc/sv/ollama ]; then
+    log "ERROR: ollama service not found"
+    exit 1
+fi
+
+# Enable ollama service
+if [ ! -L /var/service/ollama ]; then
+    log "Enabling ollama service..."
+    ln -sf /etc/sv/ollama /var/service/
+fi
+
+# Wait for ollama to be ready (max 30 seconds)
+log "Waiting for ollama to start..."
+for i in {1..30}; do
+    if ollama list &>/dev/null 2>&1; then
+        log "Ollama is ready"
+        break
+    fi
+    if [ $i -eq 30 ]; then
+        log "ERROR: Ollama failed to start within 30 seconds"
+        exit 1
+    fi
+    sleep 1
+done
+
+# Create model from local GGUF if it doesn't exist
+if ! ollama list | grep -q "$MODEL_NAME"; then
+    if [ -f "$MODELFILE" ]; then
+        log "Creating $MODEL_NAME model from local GGUF..."
+        cd "$DROID_DIR"
+        if ollama create "$MODEL_NAME" -f "$MODELFILE"; then
+            log "Model created successfully"
+            
+            # Optional: pre-warm the model to reduce first-query latency
+            log "Pre-warming model..."
+            echo "test" | ollama run "$MODEL_NAME" --verbose=false >/dev/null 2>&1 || true
+        else
+            log "ERROR: Failed to create model"
+            exit 1
+        fi
+    else
+        log "ERROR: Modelfile not found at $MODELFILE"
+        exit 1
+    fi
+else
+    log "Model $MODEL_NAME already exists"
+fi
+
+# Mark as initialized
+mkdir -p "$(dirname "$INITIALIZED_FLAG")"
+touch "$INITIALIZED_FLAG"
+
+log "Initialization complete!"
+log "Users can now run: droid \"your question\""
+
+# Remove ourselves from /var/service so we don't run again
+rm -f /var/service/droid-firstboot
+
+exit 0
