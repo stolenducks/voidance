@@ -29,7 +29,7 @@ network-manager-applet
 # Core Utilities (minimal)
 # ===========================================
 nano
-curl
+curl  # Required for droid AI helper
 wget
 ca-certificates
 

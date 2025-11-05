@@ -46,7 +46,9 @@ fi
 # Wait for llama-server to be ready (max 30 seconds)
 log "Waiting for llama-server to start..."
 for i in {1..30}; do
-    if curl -s "$LLAMA_SERVER/health" &>/dev/null 2>&1; then
+    # Try /health or root endpoint
+    if curl -s "$LLAMA_SERVER/health" &>/dev/null 2>&1 || \
+       curl -s "$LLAMA_SERVER/" &>/dev/null 2>&1; then
         log "llama-server is ready"
         break
     fi

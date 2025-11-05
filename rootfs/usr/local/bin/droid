@@ -37,7 +37,9 @@ check_llama() {
     fi
     
     # Check if server is responding
-    if ! curl -s "$LLAMA_SERVER/health" &>/dev/null; then
+    # llama.cpp server responds to /health or root endpoint
+    if ! curl -s "$LLAMA_SERVER/health" &>/dev/null && \
+       ! curl -s "$LLAMA_SERVER/" &>/dev/null; then
         warn "llama-server is not responding"
         return 1
     fi
@@ -83,7 +85,9 @@ cmd_setup() {
     # Wait for llama-server to be ready
     info "Waiting for llama-server to start..."
     for i in {1..15}; do
-        if curl -s "$LLAMA_SERVER/health" &>/dev/null; then
+        # Try /health first, fallback to root endpoint
+        if curl -s "$LLAMA_SERVER/health" &>/dev/null || \
+           curl -s "$LLAMA_SERVER/" &>/dev/null; then
             info "llama-server is ready!"
             break
         fi
@@ -111,7 +115,9 @@ cmd_status() {
         echo -e "${GREEN}✓${NC} llama-server: installed"
         if sv status llama-server &>/dev/null 2>&1; then
             echo -e "${GREEN}✓${NC} llama-server service: running"
-            if curl -s "$LLAMA_SERVER/health" &>/dev/null; then
+            # Try /health first, fallback to root
+            if curl -s "$LLAMA_SERVER/health" &>/dev/null || \
+               curl -s "$LLAMA_SERVER/" &>/dev/null; then
                 echo -e "${GREEN}✓${NC} llama-server: responding"
             else
                 echo -e "${YELLOW}!${NC} llama-server: not responding"

@@ -8,7 +8,7 @@ Get a clean XFCE experience with an offline AI assistant that helps you learn Li
 - 📚 **Embedded docs** - Void Linux documentation built-in
 - 🔌 **Works offline** - no internet required after installation  
 - 🧹 **Easy removal** - `droid uninstall` to go lightweight (~2-3GB freed)
-- 💻 **Device-agnostic** - runs on X1 Carbon and similar hardware
+- 💻 **Device-agnostic** - works on modern laptops and desktops
 
 ---
 
@@ -208,8 +208,8 @@ Remove ollama package? (y/N): y
 - [AI Helper Guide](docs/AIHelper.md) - Complete droid documentation
 - [Getting Started](docs/GettingStarted.md) - Void Linux basics
 - [Troubleshooting](docs/Troubleshooting.md) - Common issues
-- [ThinkPad X1 Carbon Profile](docs/device-profiles/thinkpad-x1c8.md) - X1C8 optimizations
 - [Contributing](docs/Contributing.md) - How to help
+- [Device Profiles](docs/device-profiles/) - Hardware-specific notes (optional)
 
 ---
 

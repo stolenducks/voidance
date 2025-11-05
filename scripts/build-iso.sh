@@ -61,6 +61,17 @@ fi
 info "Step 2/5: Building llama.cpp..."
 LLAMA_BUILD_DIR="${BUILD_DIR}/llama.cpp"
 
+# Ensure build dependencies are available
+if ! command -v gcc &>/dev/null || ! command -v g++ &>/dev/null; then
+    error "GCC/G++ not found. Installing build dependencies..."
+    if [[ -f /.dockerenv ]] || [[ $EUID -eq 0 ]]; then
+        xbps-install -y gcc make git
+    else
+        error "Please install: sudo xbps-install -S gcc make git"
+        exit 1
+    fi
+fi
+
 if [[ ! -f "${LLAMA_BUILD_DIR}/llama-server" ]]; then
     info "Cloning llama.cpp repository..."
     rm -rf "${LLAMA_BUILD_DIR}"
@@ -68,7 +79,12 @@ if [[ ! -f "${LLAMA_BUILD_DIR}/llama-server" ]]; then
     
     info "Building llama-server (this may take 5-10 minutes)..."
     cd "${LLAMA_BUILD_DIR}"
-    make -j$(nproc) llama-server
+    
+    # Detect CPU cores (fallback to 4 if nproc not available)
+    NCORES=$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)
+    info "Building with ${NCORES} cores..."
+    
+    make -j${NCORES} llama-server
     
     if [[ ! -f "llama-server" ]]; then
         error "Failed to build llama-server"
