@@ -1,5 +1,11 @@
 # Docker Development Guide
 
+⚠️ **Note**: Docker files have moved to `testing/` directory. This guide is for building Voidance on non-Void systems (macOS, Windows).
+
+📖 **See [testing/README.md](testing/README.md) for complete testing documentation.**
+
+---
+
 Quick guide for building and testing Voidance on macOS using Docker.
 
 ## Prerequisites
@@ -15,8 +21,11 @@ brew install qemu
 ## Build the ISO
 
 ```bash
+# Navigate to testing directory
+cd testing
+
 # One-command build
-./scripts/docker-build.sh
+./docker-build.sh
 ```
 
 This will:
@@ -30,8 +39,11 @@ This will:
 ## Test the ISO
 
 ```bash
-# Test in QEMU virtual machine
-./scripts/test-iso.sh
+# Test in QEMU virtual machine (from testing directory)
+./test-iso.sh
+
+# Or from project root
+./testing/test-iso.sh
 ```
 
 This launches QEMU with:
@@ -45,6 +57,9 @@ This launches QEMU with:
 If you want more control:
 
 ```bash
+# Navigate to testing directory
+cd testing
+
 # Build image
 docker compose build
 

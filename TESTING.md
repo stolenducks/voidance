@@ -1,9 +1,15 @@
 # Testing Voidance
 
+📖 **Quick Start**: See [testing/README.md](testing/README.md) for automated testing scripts.
+
+This guide covers manual testing procedures for developers.
+
 ## Prerequisites
 
 - QEMU installed: `brew install qemu`
 - Official Void Linux ISO downloaded
+
+⚠️ **Note**: Testing scripts are now in the `testing/` directory for better organization.
 
 ## Download Void Linux ISO
 
@@ -14,6 +20,26 @@ curl -L -o void-base-live.iso \
 ```
 
 ## Test in QEMU
+
+### Quick Testing with Scripts
+
+For convenience, use the automated testing scripts:
+
+```bash
+# Use automated test scripts
+cd testing
+
+# Quick test with official ISO
+./quick-test.sh
+
+# Test your built Voidance ISO
+./test-iso.sh
+
+# Run ISO with VM and disk
+./run-vm.sh ../voidance.iso
+```
+
+### Manual QEMU Testing
 
 ### Basic Test (2GB RAM)
 ```bash

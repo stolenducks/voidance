@@ -1,34 +1,82 @@
-# Built ISO files
+# ===========================================
+# Voidance Build & Test Artifacts
+# ===========================================
+
+# Built ISO files (do not commit builds)
 *.iso
 *.iso.sha256
+voidance.iso
+voidance-*.iso
+void-*.iso
 
-# Build artifacts
-iso-builder/tmp/
-iso-builder/build/
-
-# Docker volumes
-.docker/
-
-# Build artifacts
-*.iso
+# Virtual machine disk images (testing only)
+*.qcow2
+*.qcow
+*.vdi
+*.vmdk
 *.img
+
+# Build artifacts
 iso-builder/tmp/
 iso-builder/build/
+iso-builder/*.iso
+
+# Shared folder for VM testing
+shared/*
+!shared/README.txt
+
+# ===========================================
+# Docker Development
+# ===========================================
+.docker/
+.dockerignore
+
+# ===========================================
+# Operating System Files
+# ===========================================
 
 # macOS
 .DS_Store
 ._*
+.Spotlight-V100
+.Trashes
 
-# Editor files
+# Linux
+*~
+.directory
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ===========================================
+# Editor & IDE Files
+# ===========================================
 *.swp
 *.swo
-*~
+*.bak
 .vscode/
 .idea/
+*.sublime-*
 
-# Logs
+# ===========================================
+# Logs & Temporary Files
+# ===========================================
 *.log
-
-# Temp files
 tmp/
 temp/
+*.tmp
+
+# XBPS package cache (if built locally)
+*.xbps
+hostdir/
+
+# Backup files from installers
+*.backup.*
+.config.backup.*
+
+# ===========================================
+# User-Specific Test Configs
+# ===========================================
+# Add any personal testing configs here

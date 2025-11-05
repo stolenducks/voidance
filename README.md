@@ -118,32 +118,61 @@ curl -L https://raw.githubusercontent.com/dolandstutts/voidance/main/install.sh 
 
 ### Build Your Own ISO
 
+**On Void Linux (Native Build - Recommended):**
 ```bash
 # Clone the project
-git clone https://github.com/YOURUSERNAME/voidance.git
+git clone https://github.com/stolenducks/voidance.git
 cd voidance
 
-# Build ISO (on Linux)
-sudo ./scripts/build-iso.sh
+# Install build tools
+sudo xbps-install -S void-mklive git
 
-# Build ISO (on macOS with Docker)
-docker run -it --rm -v $(pwd):/workspace -w /workspace ghcr.io/void-linux/void-linux:latest bash
-xbps-install -S void-mklive git
-./scripts/build-iso.sh
+# Build ISO
+sudo ./scripts/build-iso.sh
 ```
+
+**On macOS/Windows (Docker Build):**
+```bash
+git clone https://github.com/stolenducks/voidance.git
+cd voidance/testing
+
+# Build using Docker
+./docker-build.sh
+```
+
+See [testing/README.md](testing/README.md) for detailed testing instructions.
 
 ### Test in Virtual Machine
 
+⚠️ **Important**: VM testing is for development only. Real hardware performance and features differ significantly.
+
 ```bash
+# Quick test with QEMU
+cd testing
+./test-iso.sh
+
+# Or manually with QEMU
 qemu-system-x86_64 -boot d -cdrom voidance.iso -m 4096 -enable-kvm
 ```
 
+📖 Full testing guide: [testing/README.md](testing/README.md)
+
 ### Development Commands
 
+- **Build ISO**: `sudo ./scripts/build-iso.sh`
 - **Update installed system**: `sudo ./scripts/update.sh`
 - **Clean build cache**: `sudo rm -rf iso-builder/tmp`
 - **Edit Hyprland config**: `nano config/hypr/hyprland.conf`
 - **Update package list**: `nano packages/packages.txt`
+
+### Testing Infrastructure
+
+All VM and Docker testing tools are in the `testing/` directory:
+- Docker configurations for building on non-Void systems
+- QEMU VM scripts for testing ISOs
+- Component test scripts
+
+**These are development tools only** and not needed for production installations.
 
 ---
 

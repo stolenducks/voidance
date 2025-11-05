@@ -1,0 +1,14 @@
+FROM ghcr.io/void-linux/void-glibc:latest
+
+# Copy void-mklive from our cloned repo
+COPY --from=source /tmp/void-mklive /usr/local/void-mklive
+
+# Make scripts executable
+RUN chmod +x /usr/local/void-mklive/*.sh
+
+# Add to PATH
+ENV PATH="/usr/local/void-mklive:${PATH}"
+
+WORKDIR /workspace
+
+CMD ["/bin/sh"]

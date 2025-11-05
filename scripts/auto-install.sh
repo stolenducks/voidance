@@ -211,14 +211,12 @@ XBPS_ARCH=x86_64 xbps-install -Sy -R https://repo-fastly.voidlinux.org/current -
     efibootmgr \
     linux \
     linux-firmware \
-    intel-ucode \
-    amd-ucode \
     NetworkManager \
     dhcpcd \
     curl \
     wget \
     git \
-    sudo
+    sudo || warning "Some packages skipped"
 
 success "Base system installed"
 
