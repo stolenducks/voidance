@@ -1,222 +1,328 @@
-# Voidance
+# Void Linux XFCE - AI Edition
 
-🚀 **Voidance** — a beginner-friendly, modern Void Linux remix inspired by **Omarchy (Arch-based)**, focused on simplicity, aesthetics, and developer productivity.
+🚀 **Stock Void Linux XFCE** with a built-in, removable **AI helper** for troubleshooting.
 
-Voidance brings the minimal power of Void Linux with the curated, plug-and-play experience of Omarchy:
-- 🪟 **Hyprland** tiling window manager
-- ⚙️ **Waybar**, **Walker**, **Mako**, and other Wayland essentials
-- 🎨 Pre-themed look & feel out of the box
-- 💻 Dev-ready tools, browsers, and web-app wrappers (ChatGPT, Figma, Notion, etc.)
-- 🔐 Secure defaults (LUKS encryption optional)
-- 🧰 Streamlined ISO & install script powered by `void-mklive`
-
----
-
-## 🧩 Project Goals
-
-1. Deliver a **ready-to-use Void Linux ISO** that’s beginner-friendly.  
-2. Provide an **Omarchy-like developer environment** with Hyprland.  
-3. Include **curated apps, themes, and usability enhancements**.  
-4. Teach Linux concepts gently while staying polished and fast.  
-5. Remain fully transparent, open source, and community-driven.
+Get a clean XFCE experience with an offline AI assistant that helps you learn Linux:
+- 🖥️ **Stock XFCE desktop** - exactly like the official Void ISO
+- 🤖 **droid AI helper** - offline assistant with Void Linux knowledge
+- 📚 **Embedded docs** - Void Linux documentation built-in
+- 🔌 **Works offline** - no internet required after installation  
+- 🧹 **Easy removal** - `droid uninstall` to go lightweight (~2-3GB freed)
+- 💻 **Device-agnostic** - runs on X1 Carbon and similar hardware
 
 ---
 
-## 🧠 Inspiration
+## 🎯 Project Goals
 
-Voidance is **inspired by** [Omarchy](https://github.com/basecamp/omarchy) but adapted for Void Linux. We're a spiritual successor, not a direct port.
-
-📖 **Read**: [Architectural Differences](docs/ArchitecturalDifferences.md) to understand why Voidance differs from Omarchy.
-
-**Key Influences:**
-- [Omarchy (Arch)](https://github.com/basecamp/omarchy) — The vision
-- [Void Linux](https://voidlinux.org) — The foundation
-- [Hyprland](https://hyprland.org) — The beauty
-- [Catppuccin Theme](https://github.com/catppuccin/catppuccin) — The colors
+1. **Provide stock Void Linux XFCE** with zero modifications
+2. **Include a helpful AI assistant** for beginners learning Linux
+3. **Work completely offline** after first boot
+4. **Easy to remove** when you don't need help anymore
+5. **Stay minimal** - the AI is optional, not required
 
 ---
 
-## 📦 Core Components
+## 🤖 The droid AI Helper
 
-| Component | Purpose |
-|------------|----------|
-| `Hyprland` | Window manager (tiling + animations) |
-| `Waybar` | Status bar (system info, network, audio, clock) |
-| `Walker` | App launcher (Alt + D) |
-| `Mako` | Notification daemon |
-| `PipeWire` + `WirePlumber` | Audio & mic |
-| `Thunar` | File manager |
-| `Firefox` | Browser w/ web-app wrappers (ChatGPT, Figma, Notion) |
-| `Alacritty` | Terminal |
-| `Neovim` | Developer editor |
-| `runit` | Init system (Void default) |
+**droid** is a command-line AI assistant that helps you troubleshoot Void Linux:
+
+```bash
+# Ask anything about Void Linux
+$ droid "how do I install firefox"
+To install Firefox on Void Linux:
+  sudo xbps-install -S firefox
+
+This will:
+- Update package cache
+- Install Firefox and dependencies
+
+# Get help with commands
+$ droid "what is the command to restart NetworkManager"
+sudo sv restart NetworkManager
+
+# Check AI status
+$ droid status
+=== Droid AI Helper Status ===
+✓ ollama: installed
+✓ ollama service: running
+✓ model: void-qwen (ready)
+✓ void docs: 15M
+
+# Remove AI when you're comfortable
+$ droid uninstall
+Disk space to be reclaimed: ~2.3GB
+Continue? (y/N): y
+```
+
+**Features:**
+- Uses Qwen 2.5 Coder 3B (lightweight, fast)
+- Knows xbps package management
+- Knows runit service management
+- Augments responses with Void Linux documentation
+- Works offline - no data sent to internet
+- Easy to remove completely
+
+---
+
+## 📦 What's Included
+
+| Component | Purpose | Removable? |
+|-----------|---------|------------|
+| **XFCE4** | Desktop environment | No (core) |
+| **NetworkManager** | Network management | No (core) |
+| **lightdm** | Display manager | No (core) |
+| **droid CLI** | AI helper | Yes |
+| **Qwen 2.5 Coder 3B** | AI model (~2GB) | Yes |
+| **Void docs** | Offline documentation | Yes |
+| **ripgrep, jq** | AI helper utilities | Yes |
+| **tlp** | Power management (optional) | Yes |
+| **fwupd** | Firmware updates (optional) | Yes |
+
+**Total ISO size:** ~3.5-4GB (including AI model)  
+**After `droid uninstall`:** Near-stock Void Linux (~600MB RAM usage)
 
 ---
 
 ## 🚀 Installation
 
-### Method 1: Automated Installer (Easiest) ⭐
+### Quick Start (Recommended)
 
-**Zero configuration required!** Just boot the Void ISO and run one command:
-
-1. **Download Void Linux ISO** ([Download](https://voidlinux.org/download/))
-   - Use the **base** live image (glibc)
-
-2. **Boot from USB and login**
-   - Username: `root`
-   - Password: `voidlinux`
-
-3. **Run the auto-installer**
+1. **Download the ISO** (not yet released - build from source below)
+   
+2. **Flash to USB**
    ```bash
-curl -L https://raw.githubusercontent.com/stolenducks/voidance/main/scripts/auto-install.sh | bash
+   # macOS
+   sudo dd if=void-xfce-ai-YYYYMMDD.iso of=/dev/diskX bs=4m
+   
+   # Linux
+   sudo dd if=void-xfce-ai-YYYYMMDD.iso of=/dev/sdX bs=4M status=progress
    ```
 
-4. **Follow the prompts**
-   - Select disk
-   - Create username/password
-   - Wait ~15-20 minutes
-   - Reboot!
+3. **Boot from USB**
+   - Login: `root` / `voidlinux`
+   - Follow installer prompts
 
-Hyprland starts automatically on login. Done! 🎉
-
----
-
-### Method 2: Transform Existing Void Installation
-
-Already have Void Linux installed? Transform it:
-
-```bash
-curl -L https://raw.githubusercontent.com/stolenducks/voidance/main/install.sh | sh
-```
+4. **First boot**
+   - The droid AI helper initializes automatically
+   - Try: `droid "your question"`
 
 ---
 
-**What you get:**
-- ✅ Hyprland tiling window manager
-- ✅ Pre-configured Waybar, Walker, Mako
-- ✅ Developer tools (Neovim, Git, Node, Go, Python)
-- ✅ Catppuccin theme out of the box
-- ✅ 120+ curated packages
-- ✅ Auto-partitioning, bootloader, everything!
+## 🛠️ Building from Source
 
-### Advanced Options
+### On macOS (via Docker)
 
-**Custom Installation**
-- Full disk encryption (LUKS)
-- Custom partitioning (LVM, RAID)
-- See: [Manual Installation Guide](docs/ManualInstallation.md)
-
-**Existing Void Installation?**
 ```bash
-# Transform your current Void setup
-curl -L https://raw.githubusercontent.com/dolandstutts/voidance/main/install.sh | sh
-```
-
----
-
-## 🛠️ Development & Building
-
-### Build Your Own ISO
-
-**On Void Linux (Native Build - Recommended):**
-```bash
-# Clone the project
+# Clone the repository
 git clone https://github.com/stolenducks/voidance.git
 cd voidance
+git checkout xfce-ai-stock
 
-# Install build tools
-sudo xbps-install -S void-mklive git
+# Build using Docker
+cd testing
+./build-in-docker.sh
+
+# Output: dist/void-xfce-ai-YYYYMMDD.iso
+```
+
+### On Void Linux (native build)
+
+```bash
+# Install dependencies
+sudo xbps-install -S void-mklive git wget curl
+
+# Clone repository
+git clone https://github.com/stolenducks/voidance.git
+cd voidance
+git checkout xfce-ai-stock
 
 # Build ISO
 sudo ./scripts/build-iso.sh
+
+# Output: dist/void-xfce-ai-YYYYMMDD.iso
 ```
 
-**On macOS/Windows (Docker Build):**
-```bash
-git clone https://github.com/stolenducks/voidance.git
-cd voidance/testing
+**Build time:** 15-30 minutes depending on your system and connection speed.
 
-# Build using Docker
-./docker-build.sh
-```
+---
 
-See [testing/README.md](testing/README.md) for detailed testing instructions.
+## 💡 Usage Examples
 
-### Test in Virtual Machine
-
-⚠️ **Important**: VM testing is for development only. Real hardware performance and features differ significantly.
+### After Installation
 
 ```bash
-# Quick test with QEMU
-cd testing
-./test-iso.sh
+# Get help with package management
+$ droid "how do I search for a package"
+Use xbps-query to search:
+  xbps-query -Rs <keyword>
 
-# Or manually with QEMU
-qemu-system-x86_64 -boot d -cdrom voidance.iso -m 4096 -enable-kvm
+Example:
+  xbps-query -Rs firefox
+
+# Troubleshoot networking
+$ droid "my wifi won't connect"
+Try these steps:
+1. Check NetworkManager status:
+   sudo sv status NetworkManager
+2. Restart NetworkManager:
+   sudo sv restart NetworkManager
+3. Connect via CLI:
+   nmcli device wifi connect <SSID> password <password>
+
+# Learn about services
+$ droid "how do I enable a service in Void Linux"
+In Void Linux, services are managed with runit (not systemd).
+
+To enable a service:
+  sudo ln -sf /etc/sv/<service> /var/service/
+
+Example:
+  sudo ln -sf /etc/sv/tlp /var/service/
+
+Check status:
+  sudo sv status <service>
 ```
 
-📖 Full testing guide: [testing/README.md](testing/README.md)
+### Remove AI When Ready
 
-### Development Commands
+```bash
+$ droid uninstall
+This will remove the droid AI helper and reclaim disk space
 
-- **Build ISO**: `sudo ./scripts/build-iso.sh`
-- **Update installed system**: `sudo ./scripts/update.sh`
-- **Clean build cache**: `sudo rm -rf iso-builder/tmp`
-- **Edit Hyprland config**: `nano config/hypr/hyprland.conf`
-- **Update package list**: `nano packages/packages.txt`
+Disk space to be reclaimed: 2.3GB
 
-### Testing Infrastructure
+Continue? (y/N): y
+[droid] Stopping ollama service...
+[droid] Removing AI assets...
+[droid] Removing ollama data...
 
-All VM and Docker testing tools are in the `testing/` directory:
-- Docker configurations for building on non-Void systems
-- QEMU VM scripts for testing ISOs
-- Component test scripts
-
-**These are development tools only** and not needed for production installations.
+Remove ollama package? (y/N): y
+[droid] Removing ollama package...
+[droid] Uninstall complete! System is now near-stock.
+```
 
 ---
 
 ## 📚 Documentation
 
-- [Getting Started](docs/GettingStarted.md) — Detailed installation guide
-- [Architectural Differences](docs/ArchitecturalDifferences.md) — Why Voidance differs from Omarchy
-- [Keyboard Shortcuts](docs/KeyboardShortcuts.md) — Hyprland keybindings
-- [Troubleshooting](docs/Troubleshooting.md) — Common issues & fixes
-- [Contributing](docs/Contributing.md) — How to contribute
+- [AI Helper Guide](docs/AIHelper.md) - Complete droid documentation
+- [Getting Started](docs/GettingStarted.md) - Void Linux basics
+- [Troubleshooting](docs/Troubleshooting.md) - Common issues
+- [ThinkPad X1 Carbon Profile](docs/device-profiles/thinkpad-x1c8.md) - X1C8 optimizations
+- [Contributing](docs/Contributing.md) - How to help
 
 ---
 
-## 🚀 Releasing
+## 🧪 Testing
+
+### Test in VM (QEMU)
 
 ```bash
-git tag -a v0.1-beta -m "First beta"
-git push origin v0.1-beta
+cd testing
+./test-iso.sh
 ```
+
+Or manually:
+
+```bash
+qemu-system-x86_64 \
+  -boot d \
+  -cdrom dist/void-xfce-ai-*.iso \
+  -m 4096 \
+  -enable-kvm
+```
+
+### Compare with Official ISO
+
+Our ISO should be nearly identical to the official Void XFCE ISO, with only these additions:
+- ollama
+- ripgrep
+- jq  
+- droid CLI and assets
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! This project aims to:
+- Stay as close to stock Void Linux as possible
+- Provide a helpful AI assistant for beginners
+- Remain fully transparent and open source
+
+See [CONTRIBUTING.md](docs/Contributing.md) for guidelines.
+
+---
+
+## 🔒 Privacy & Security
+
+**Offline by default:**
+- The AI model runs locally (no internet connection needed)
+- No data is sent to external servers
+- All processing happens on your machine
+
+**The AI helper:**
+- Uses Qwen 2.5 Coder 3B (open source model)
+- Runs via Ollama (open source inference engine)
+- Reads local Void Linux documentation for context
+- Can be completely removed with `droid uninstall`
 
 ---
 
 ## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-## 🤝 Governance & Contributing
-
-- **Philosophy**: Read [GOVERNANCE.md](GOVERNANCE.md) to understand our beginner-first approach
-- **Contributing**: See [docs/Contributing.md](docs/Contributing.md) for how to help
-- **Contributors**: Check [CONTRIBUTORS.md](CONTRIBUTORS.md) for our awesome community
-
-Voidance is built **by beginners, for beginners**. If you're learning Linux, you're our target user!
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
 ## 🙏 Credits
 
-Built with love for the Void Linux community, inspired by Omarchy's vision of a polished developer-first experience.
-
-**Inspiration & Thanks:**
-- [Omarchy](https://github.com/basecamp/omarchy) - The vision
+**Built on the shoulders of giants:**
 - [Void Linux](https://voidlinux.org) - The foundation
-- [Hyprland](https://hyprland.org) - The beauty
-- [Catppuccin](https://github.com/catppuccin/catppuccin) - The colors
+- [Qwen 2.5 Coder](https://github.com/QwenLM/Qwen2.5-Coder) - The AI model
+- [Ollama](https://ollama.ai) - The inference engine
+- [XFCE](https://xfce.org) - The desktop environment
+
+**Inspired by:**
+- The original [Voidance](https://github.com/stolenducks/voidance) project (Hyprland-focused)
+- The idea that Linux beginners deserve helpful, offline tools
+
+---
+
+## ⚠️ Important Notes
+
+- **This is NOT official Void Linux** - it's a community project
+- **The AI can make mistakes** - always verify important commands
+- **Internet required for initial build** - to download AI model and docs
+- **Works offline after installation** - no internet needed for the AI
+
+---
+
+## 🎓 Learning Resources
+
+Using the droid AI helper is great, but here are official resources too:
+
+- [Void Linux Handbook](https://docs.voidlinux.org/)
+- [Void Linux Wiki](https://wiki.voidlinux.org/)
+- [Void Linux Reddit](https://reddit.com/r/voidlinux)
+- [Void Linux IRC](https://web.libera.chat/#voidlinux)
+
+**Philosophy:** Use droid to learn, but understand what the commands do. The goal is to help you become comfortable with Void Linux, not to make you dependent on AI.
+
+---
+
+## 🗺️ Roadmap
+
+- [x] Stock XFCE ISO builder
+- [x] Offline AI helper (droid)
+- [x] macOS build support (Docker)
+- [x] Device profiles (ThinkPad X1 Carbon)
+- [ ] First stable release
+- [ ] Pre-built ISO downloads
+- [ ] Community testing and feedback
+- [ ] Additional device profiles
+
+---
+
+**Status:** Active development (xfce-ai-stock branch)  
+**Version:** Pre-release  
+**Maintainer:** [@stolenducks](https://github.com/stolenducks)
