@@ -20,6 +20,11 @@ void-*.iso
 iso-builder/tmp/
 iso-builder/build/
 iso-builder/*.iso
+iso-builder/rootfs_overlay/
+iso-builder/ai-assets/
+
+# Distribution directory
+dist/
 
 # Shared folder for VM testing
 shared/*
