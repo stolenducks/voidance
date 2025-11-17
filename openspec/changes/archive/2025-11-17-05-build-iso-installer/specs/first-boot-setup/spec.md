@@ -8,57 +8,112 @@ Provides a welcoming and intuitive first-boot experience for Voidance Linux user
 ### Requirement: Welcome Screen Display
 The system SHALL display a welcome screen on first login.
 
-#### Scenario: When a user first logs into Voidance, a welcome application automatically launches and provides an introduction to the system
+#### Scenario: First Login Welcome Display
+- **WHEN** a user first logs into Voidance Linux
+- **THEN** a welcome application automatically launches
+- **AND** provides an introduction to the system
+- **AND** displays key features and philosophy
+- **AND** shows a quick start overview
 
 ### Requirement: Initial Configuration Guidance
 The system SHALL guide users through essential initial configuration.
 
-#### Scenario: The welcome screen walks users through password change, theme selection, wallpaper choice, and other basic system settings
+#### Scenario: Essential Configuration Guidance
+- **WHEN** the welcome screen starts
+- **THEN** it walks users through password change
+- **AND** guides theme selection
+- **AND** helps with wallpaper choice
+- **AND** assists with other basic system settings
 
 ### Requirement: User Preference Collection
 The system SHALL collect user preferences and system settings.
 
-#### Scenario: Users can select their preferred theme (light/dark/auto), choose wallpapers, configure autologin, and set other personalization options
+#### Scenario: User Preference Collection
+- **WHEN** users interact with the setup wizard
+- **THEN** they can select preferred theme (light/dark/auto)
+- **AND** they can choose wallpapers
+- **AND** they can configure autologin
+- **AND** they can set other personalization options
 
 ### Requirement: Desktop Environment Setup
 The system SHALL set up personalized desktop environment.
 
-#### Scenario: User selections are applied to Niri configuration, Waybar settings, and system theme configurations to create a personalized desktop
+#### Scenario: Desktop Environment Personalization
+- **WHEN** users complete their preference selections
+- **THEN** user selections are applied to Niri configuration
+- **AND** Waybar settings are updated
+- **AND** system theme configurations are modified
+- **AND** a personalized desktop is created
 
 ### Requirement: System Information and Resources
 The system SHALL provide system information and getting started resources.
 
-#### Scenario: The welcome screen includes keyboard shortcuts, application overviews, and links to documentation and help resources
+#### Scenario: Getting Started Resources
+- **WHEN** users reach the final setup screen
+- **THEN** the welcome screen includes keyboard shortcuts
+- **AND** provides application overviews
+- **AND** shows links to documentation
+- **AND** displays help resources
 
 ### Requirement: Interactive and Automated Setup Modes
 The system SHALL support both interactive and automated setup modes.
 
-#### Scenario: Users can either go through the interactive setup or skip it to use default configurations, with options to run it later
+#### Scenario: Setup Mode Selection
+- **WHEN** the welcome application launches
+- **THEN** users can choose interactive setup
+- **OR** they can skip to use default configurations
+- **AND** they have options to run it later
+- **AND** their choice is respected and applied
 
 ### Requirement: Smooth User Experience
 The system SHALL maintain smooth, responsive user experience.
 
-#### Scenario: The welcome application launches quickly, responds immediately to user interactions, and provides smooth transitions between setup steps
+#### Scenario: Responsive User Interface
+- **WHEN** users interact with the welcome application
+- **THEN** the application launches quickly
+- **AND** it responds immediately to user interactions
+- **AND** it provides smooth transitions between setup steps
+- **AND** animations are fluid and non-intrusive
 
 ### Requirement: Modern Desktop Design
 The system SHALL follow modern desktop application design patterns.
 
-#### Scenario: The interface uses GTK4/libadwaita components with consistent styling, proper spacing, and intuitive navigation patterns
+#### Scenario: Modern Interface Design
+- **WHEN** the welcome application is displayed
+- **THEN** it uses GTK4/libadwaita components
+- **AND** it maintains consistent styling
+- **AND** it provides proper spacing
+- **AND** it uses intuitive navigation patterns
 
 ### Requirement: Accessibility and Usability
 The system SHALL ensure accessibility and usability for all users.
 
-#### Scenario: The application supports keyboard navigation, screen readers, and follows accessibility guidelines for users with disabilities
+#### Scenario: Accessibility Support
+- **WHEN** users with disabilities use the welcome application
+- **THEN** it supports keyboard navigation
+- **AND** it works with screen readers
+- **AND** it follows accessibility guidelines
+- **AND** it provides alternative input methods
 
 ### Requirement: Clear Instructions and Guidance
 The system SHALL provide clear, concise instructions and guidance.
 
-#### Scenario: Each setup step includes clear explanations, helpful descriptions, and contextual help text to guide users through the process
+#### Scenario: Clear User Guidance
+- **WHEN** users progress through setup steps
+- **THEN** each step includes clear explanations
+- **AND** it provides helpful descriptions
+- **AND** it shows contextual help text
+- **AND** it guides users through the process
 
 ### Requirement: Multi-language Support
 The system SHALL support multiple languages where possible.
 
-#### Scenario: The welcome application uses standard internationalization practices and can be localized for different language regions
+#### Scenario: Internationalization Support
+- **WHEN** the welcome application runs in different regions
+- **THEN** it uses standard internationalization practices
+- **AND** it can be localized for different languages
+- **AND** it respects system locale settings
+- **AND** it provides fallback language support
 - Display welcome screen on first login
   #### Scenario: When a user first logs into Voidance, a welcome application automatically launches and provides an introduction to the system
 - Guide users through essential initial configuration
