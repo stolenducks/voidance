@@ -1,0 +1,159 @@
+# Ghostty Terminal Configuration
+# Default configuration for Voidance desktop environment
+# Educational: Each setting includes explanation for learning
+
+# =============================================================================
+# APPEARANCE
+# =============================================================================
+
+# Font configuration for optimal readability
+# Inconsolata provides excellent monospace rendering for terminals
+font-family = Inconsolata
+font-size = 12
+font-weight = 400
+font-bold-weight = 700
+font-italic-weight = 400
+
+# Line height for better readability
+# 1.2 provides comfortable spacing between lines
+line-height = 1.2
+
+# Color scheme - Dark theme optimized for reduced eye strain
+# Background: Dark blue-gray for reduced contrast
+background = 1e1e2e
+# Foreground: Light gray for comfortable reading
+foreground = cdd6f4
+
+# Cursor configuration
+# Block cursor is highly visible and traditional
+cursor-style = block
+# Cursor color matches terminal foreground for consistency
+cursor-color = cdd6f4
+# Cursor blink for visibility (subtle, not distracting)
+cursor-blink = true
+
+# Selection colors
+# Blue background with white foreground for good contrast
+selection-background = 89b4fa
+selection-foreground = 1e1e2e
+
+# =============================================================================
+# WINDOW MANAGEMENT
+# =============================================================================
+
+# Window padding for visual breathing room
+# 10px padding provides nice visual separation
+window-padding-x = 10
+window-padding-y = 10
+
+# Window decoration (title bar)
+# Hide title bar for cleaner look in tiling window managers
+window-decoration = false
+
+# Window opacity
+# 0.95 provides slight transparency for modern look
+window-opacity = 0.95
+
+# =============================================================================
+# TERMINAL BEHAVIOR
+# =============================================================================
+
+# Shell integration
+# Enable shell integration for better command tracking
+shell-integration = true
+
+# Scrollback buffer
+# 10,000 lines provides good history without excessive memory usage
+scrollback-limit = 10000
+
+# Tab bar configuration
+# Show tab bar when multiple tabs are open
+tab-bar = auto
+# Tab position at top (traditional placement)
+tab-bar-position = top
+
+# =============================================================================
+# KEYBOARD SHORTCUTS
+# =============================================================================
+
+# New tab
+# Ctrl+Shift+T is the standard for new tabs
+keybind = ctrl+shift+t=new_tab
+
+# Close tab
+# Ctrl+Shift+W is the standard for closing tabs
+keybind = ctrl+shift+w=close_tab
+
+# Switch tabs
+# Ctrl+Tab and Ctrl+Shift+Tab for tab navigation
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=prev_tab
+
+# Copy/Paste
+# Ctrl+Shift+C and Ctrl+Shift+V for terminal clipboard operations
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard
+
+# Font size adjustment
+# Ctrl+Plus/Minus for zoom functionality
+keybind = ctrl+equal=increase_font_size
+keybind = ctrl+minus=decrease_font_size
+keybind = ctrl+0=reset_font_size
+
+# Split management
+# Ctrl+Shift+| for horizontal split, Ctrl+Shift+- for vertical split
+keybind = ctrl+shift+backslash=split_horizontal
+keybind = ctrl+shift+minus=split_vertical
+
+# =============================================================================
+# PERFORMANCE OPTIMIZATION
+# =============================================================================
+
+# GPU acceleration
+# Enable GPU acceleration for better performance
+gpu-acceleration = true
+
+# Rendering optimization
+# Use optimized rendering for better performance
+render-timer = false
+
+# =============================================================================
+# ACCESSIBILITY
+# =============================================================================
+
+# Font ligatures
+# Enable font ligatures for better typography (if font supports them)
+font-ligatures = true
+
+# Bell configuration
+# Visual bell instead of audible bell for less distraction
+bell = visual
+
+# =============================================================================
+# WAYLAND INTEGRATION
+# =============================================================================
+
+# Wayland-specific settings
+# Enable Wayland-specific features for better integration
+wayland-enable = true
+
+# Clipboard integration
+# Enable primary clipboard selection (middle-click paste)
+clipboard-primary = true
+
+# =============================================================================
+# EDUCATIONAL NOTES
+# =============================================================================
+
+# This configuration is designed to be educational:
+# - Each section is clearly labeled with purpose
+# - Settings include comments explaining their function
+# - Values chosen based on usability best practices
+# - Performance optimizations are clearly marked
+# - Accessibility features are included by default
+
+# For customization:
+# - Copy this file to ~/.config/ghostty/config
+# - Modify values as needed
+# - Use ghostty --config-file to check configuration location
+# - Restart Ghostty after making changes

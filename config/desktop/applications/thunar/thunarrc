@@ -1,0 +1,136 @@
+# Thunar File Manager Configuration
+# Default configuration for Voidance desktop environment
+# Educational: Each setting includes explanation for learning
+
+# =============================================================================
+# DISPLAY SETTINGS
+# =============================================================================
+
+# Show hidden files by default
+# Hidden files (starting with .) are often configuration files
+# Showing them helps users understand their system better
+HiddenFiles=true
+
+# Show thumbnails for files
+# Thumbnails provide visual preview of images and documents
+# Disabled for performance on network drives
+ShowThumbnails=true
+
+# Thumbnail size in pixels
+# 64px provides good balance between visibility and performance
+ThumbnailSize=64
+
+# Last sidebar width
+# 180px provides good space for navigation while maximizing file view
+LastSidebarWidth=180
+
+# Last window geometry
+# 1024x768 provides good default size for file management
+LastWindowWidth=1024
+LastWindowHeight=768
+LastWindowMaximized=false
+
+# =============================================================================
+# VIEW SETTINGS
+# =============================================================================
+
+# Default view mode
+# ThunarIconView shows files as icons with names
+# Good for general file browsing and visual organization
+LastView=ThunarIconView
+
+# Sort order
+# Sort by name in ascending order (A-Z)
+# Most intuitive for users
+SortColumn=name
+SortOrder=ascending
+
+# Show file sizes in bytes
+# false means show in human-readable format (KB, MB, GB)
+# More user-friendly for understanding file sizes
+MiscShowFileSizeInBytes=false
+
+# =============================================================================
+# BEHAVIOR SETTINGS
+# =============================================================================
+
+# Single click to open files and folders
+# true = single click (like web browsers)
+# false = double click (traditional desktop)
+# Using double click for traditional desktop experience
+MiscSingleClick=false
+
+# Use experimental threading
+# Improves performance for file operations
+# Enabled for better user experience
+MiscThumbnailsUseExif=true
+
+# Confirm file operations
+# Ask before deleting files to prevent accidents
+MiscConfirmDelete=true
+
+# Confirm moving files to trash
+# Additional safety measure
+MiscConfirmTrash=true
+
+# =============================================================================
+# ADVANCED SETTINGS
+# =============================================================================
+
+# Volume management
+# Enable removable media handling
+# Allows automatic mounting of USB drives, etc.
+MiscVolumeManagement=true
+
+# Execute shell scripts
+# Allow execution of shell scripts from file manager
+# Useful for power users
+MiscExecShellScript=true
+
+# Middle click behavior
+# Middle click opens new tab
+# Modern browser-like behavior
+MiscMiddleClickInTab=true
+
+# =============================================================================
+# SHORTCUTS AND SIDEBAR
+# =============================================================================
+
+# Show bookmarks in sidebar
+# Quick access to important locations
+SidebarShowBookmarks=true
+
+# Show places in sidebar
+# Quick access to system locations
+SidebarShowPlaces=true
+
+# Show tree view in sidebar
+# Hierarchical view of file system
+SidebarShowTree=true
+
+# Show devices in sidebar
+# Quick access to mounted drives
+SidebarShowDevices=true
+
+# =============================================================================
+# EDUCATIONAL NOTES
+# =============================================================================
+
+# This configuration is designed to be educational:
+# - Hidden files are shown to help users learn about system structure
+# - Each setting includes comments explaining its purpose
+# - Traditional double-click behavior for familiarity
+# - Safety confirmations enabled to prevent data loss
+# - Performance optimizations balanced with features
+
+# For customization:
+# - Copy this file to ~/.config/Thunar/accels.scm for keyboard shortcuts
+# - Use Thunar's preferences dialog for GUI configuration
+# - Settings are stored in ~/.config/Thunar/thunarrc
+# - Custom actions can be added in ~/.config/Thunar/uca.xml
+
+# Learning tips:
+# - Hidden files (starting with .) contain system configurations
+# - Thumbnails help identify files visually but use more resources
+# - Single vs double click is a matter of personal preference
+# - Volume management requires proper system permissions

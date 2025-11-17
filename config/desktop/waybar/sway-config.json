@@ -1,0 +1,225 @@
+{
+    // Waybar configuration for Sway compositor
+    // Educational: Each setting includes explanation for learning
+    
+    // =============================================================================
+    // LAYER AND POSITIONING
+    // =============================================================================
+    
+    // Position of the bar (top, bottom, left, right)
+    "layer": "top",
+    "position": "top",
+    
+    // Height of the bar
+    "height": 24,
+    
+    // =============================================================================
+    // OUTPUT CONFIGURATION
+    // =============================================================================
+    
+    // Display bar on all outputs by default
+    // Can be customized for specific outputs
+    "output": [
+        "*"
+    ],
+    
+    // =============================================================================
+    // MODULES CONFIGURATION
+    // =============================================================================
+    
+    // Modules for the left side of the bar
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode",
+        "sway/window"
+    ],
+    
+    // Modules for the center of the bar
+    "modules-center": [
+        "clock"
+    ],
+    
+    // Modules for the right side of the bar
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "battery",
+        "tray",
+        "idle_inhibitor",
+        "custom/power"
+    ],
+    
+    // =============================================================================
+    // MODULE CONFIGURATIONS
+    // =============================================================================
+    
+    // Sway workspaces module
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+    
+    // Sway mode module
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    
+    // Sway window module
+    "sway/window": {
+        "format": "{app_id} - {title}",
+        "max-length": 50,
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "🌐 $1",
+            "(.*) - Visual Studio Code": "💻 $1",
+            "(.*) - Ghostty": "🖥️ $1",
+            "(.*) - Thunar": "📁 $1"
+        }
+    },
+    
+    // Clock module
+    "clock": {
+        "format": "{:%Y-%m-%d %H:%M:%S}",
+        "format-alt": "{:%Y-%m-%d %H:%M}",
+        "tooltip-format": "{:%Y-%m-%d %H:%M:%S}",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "left",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "mode",
+            "on-click-right": "shift_up"
+        }
+    },
+    
+    // PulseAudio module
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": "",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    
+    // Network module
+    "network": {
+        "interface": "",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname}\n{ipaddr}/{cidr}\n{essid}\n{signalStrength}%",
+        "on-click": "networkmanager_dmenu",
+        "on-click-right": "nm-connection-editor"
+    },
+    
+    // Battery module
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{time} ({capacity}%)",
+        "on-click": "",
+        "on-click-middle": "",
+        "on-click-right": ""
+    },
+    
+    // System tray
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    
+    // Idle inhibitor
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    
+    // Custom power menu
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "wofi --show drun -I | grep -E '(logout|reboot|shutdown)' | head -1 | xargs -I {} sh -c '{}'",
+        "on-click-right": "wofi --show drun -I | grep -E '(logout|reboot|shutdown)' | head -1 | xargs -I {} sh -c '{}'"
+    },
+    
+    // =============================================================================
+    // APPEARANCE AND STYLING
+    // =============================================================================
+    
+    // Font configuration
+    "font": {
+        "family": "Montserrat",
+        "size": 10,
+        "weight": "normal"
+    },
+    
+    // Theme colors (Nord-inspired)
+    "custom-colors": {
+        "background": "#2e3440",
+        "foreground": "#eceff4",
+        "accent": "#88c0d0",
+        "urgent": "#bf616a",
+        "warning": "#ebcb8b",
+        "success": "#a3be8c"
+    }
+}

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Niri (Voidance)
+Comment=Voidance desktop environment with Niri compositor
+Exec=niri-session
+Type=Application
+DesktopNames=voidance-niri
+Keywords=wm;tiling;wayland;scrollable-tiling;niri;
+X-DesktopNames=voidance-niri
+X-Purism-FormFactor=Workstation;Mobile;
+X-GNOME-Gettext-Domain=niri
+X-GNOME-Autostart-Phase=WindowManager
+X-KDE-Wayland-Interface=niri
+X-GDM-SessionRegisters=true

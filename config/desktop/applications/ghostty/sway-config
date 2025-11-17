@@ -1,0 +1,179 @@
+# Ghostty Terminal Configuration for Sway Compositor
+# Optimized for tiling window manager workflow
+# Educational: Each setting includes explanation for learning
+
+# =============================================================================
+# APPEARANCE
+# =============================================================================
+
+# Font configuration for optimal readability in tiling layout
+# Inconsolata provides excellent monospace rendering for terminals
+font-family = Inconsolata
+font-size = 12
+font-weight = 400
+font-bold-weight = 700
+font-italic-weight = 400
+
+# Line height for better readability in tiled windows
+# 1.1 provides comfortable spacing without excessive height
+line-height = 1.1
+
+# Color scheme - Dark theme optimized for reduced eye strain
+# Background: Dark blue-gray for reduced contrast
+background = 1e1e2e
+# Foreground: Light gray for comfortable reading
+foreground = cdd6f4
+
+# Cursor configuration
+# Block cursor is highly visible in tiled layout
+cursor-style = block
+# Cursor color matches terminal foreground for consistency
+cursor-color = cdd6f4
+# Cursor blink for visibility (subtle, not distracting)
+cursor-blink = true
+
+# Selection colors
+# Blue background with white foreground for good contrast
+selection-background = 89b4fa
+selection-foreground = 1e1e2e
+
+# =============================================================================
+# WINDOW MANAGEMENT (SWAY-SPECIFIC)
+# =============================================================================
+
+# Window padding for visual breathing room in tiles
+# Minimal padding for efficient space usage in tiling
+window-padding-x = 5
+window-padding-y = 5
+
+# Window decoration (title bar)
+# Hide title bar for cleaner tiling layout
+window-decoration = false
+
+# Window opacity
+# 1.0 for solid appearance in tiled layout
+window-opacity = 1.0
+
+# =============================================================================
+# TERMINAL BEHAVIOR
+# =============================================================================
+
+# Shell integration
+# Enable shell integration for better command tracking
+shell-integration = true
+
+# Scrollback buffer
+# 5,000 lines provides good history without excessive memory usage
+# Reduced from default for better performance in tiled workflow
+scrollback-limit = 5000
+
+# Tab bar configuration
+# Hide tab bar in tiling layout (use Sway workspaces instead)
+tab-bar = never
+
+# =============================================================================
+# KEYBOARD SHORTCUTS (SWAY-COMPATIBLE)
+# =============================================================================
+
+# Copy/Paste - Avoid conflicts with Sway defaults
+# Use Super+Shift for terminal-specific operations
+keybind = super+shift+c=copy_to_clipboard
+keybind = super+shift+v=paste_from_clipboard
+
+# Font size adjustment
+# Super+Plus/Minus for zoom functionality
+keybind = super+equal=increase_font_size
+keybind = super+minus=decrease_font_size
+keybind = super+0=reset_font_size
+
+# New window/instance
+# Super+Shift+N for new terminal instance
+keybind = super+shift+n=new_window
+
+# Split management (compatible with Sway)
+# Use different modifiers to avoid conflicts
+keybind = ctrl+shift+backslash=split_horizontal
+keybind = ctrl+shift+minus=split_vertical
+
+# =============================================================================
+# PERFORMANCE OPTIMIZATION
+# =============================================================================
+
+# GPU acceleration
+# Enable GPU acceleration for better performance
+gpu-acceleration = true
+
+# Rendering optimization
+# Use optimized rendering for better performance in tiled layout
+render-timer = false
+
+# =============================================================================
+# ACCESSIBILITY
+# =============================================================================
+
+# Font ligatures
+# Enable font ligatures for better typography (if font supports them)
+font-ligatures = true
+
+# Bell configuration
+# Visual bell instead of audible bell for less distraction
+bell = visual
+
+# =============================================================================
+# SWAY INTEGRATION
+# =============================================================================
+
+# Wayland-specific settings
+# Enable Wayland-specific features for better integration
+wayland-enable = true
+
+# Clipboard integration
+# Enable primary clipboard selection (middle-click paste)
+clipboard-primary = true
+
+# Focus management
+# Auto-focus new windows for better workflow
+window-auto-focus = true
+
+# =============================================================================
+# TILING WORKFLOW OPTIMIZATIONS
+# =============================================================================
+
+# Window title format
+# Include working directory for better context in tiles
+window-title-format = "{title} - {cwd}"
+
+# Confirm before closing multiple terminals
+confirm-close-surface = false
+
+# =============================================================================
+# EDUCATIONAL NOTES
+# =============================================================================
+
+# This Ghostty configuration is optimized for Sway tiling workflow:
+# - Minimal padding for efficient space usage
+# - No title bar for clean tiling appearance
+# - Keybindings avoid conflicts with Sway defaults
+# - Performance optimized for multiple tiled instances
+# - Integration features work seamlessly with Sway
+
+# Learning tips:
+# - Sway uses Super (Mod4) as primary modifier
+# - Terminal-specific shortcuts use Super+Shift to avoid conflicts
+# - Tab bar is disabled (use Sway workspaces instead)
+# - Window decorations are hidden for cleaner tiling
+# - Clipboard integration works with Sway's clipboard management
+
+# Customization:
+# - Adjust font size for your screen density
+# - Modify keybindings if you use different Sway bindings
+# - Change padding based on your preference
+# - Enable/disable features based on your workflow
+# - Adjust scrollback limit based on your needs
+
+# Sway integration:
+# - Works seamlessly with Sway's tiling layout
+# - Clipboard integrates with wl-clipboard
+# - Window management follows Sway conventions
+# - Performance optimized for multiple instances
+# - Focus management compatible with Sway workflow

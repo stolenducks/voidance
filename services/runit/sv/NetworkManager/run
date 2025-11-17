@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# NetworkManager runit service script
+# Part of Voidance Linux system services
+
+# Source function library if it exists
+if [ -r /etc/rc.conf ]; then
+    . /etc/rc.conf
+fi
+
+# Get daemon options from /etc/conf.d/networkmanager if it exists
+if [ -r /etc/conf.d/networkmanager ]; then
+    . /etc/conf.d/networkmanager
+fi
+
+# Default options if not set
+NETWORKMANAGER_OPTS="${NETWORKMANAGER_OPTS:-}"
+
+# Check if NetworkManager binary exists
+if ! command -v NetworkManager >/dev/null 2>&1; then
+    echo "NetworkManager binary not found"
+    exit 1
+fi
+
+# Create necessary directories
+mkdir -p /var/run/NetworkManager
+mkdir -p /etc/NetworkManager/conf.d
+mkdir -p /var/lib/NetworkManager
+
+# Set up environment
+export PATH="/usr/bin:/usr/sbin:/bin:/sbin"
+
+# Start NetworkManager daemon
+echo "Starting NetworkManager..."
+exec NetworkManager --no-daemon $NETWORKMANAGER_OPTS 2>&1

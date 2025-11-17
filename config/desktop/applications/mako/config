@@ -1,0 +1,207 @@
+# Mako Notification Daemon Configuration
+# Default configuration for Voidance desktop environment
+# Educational: Each setting includes explanation for learning
+
+# =============================================================================
+# APPEARANCE
+# =============================================================================
+
+# Font configuration for notifications
+# Montserrat provides clean, modern UI typography
+font=Montserrat 10
+
+# Background color for notifications
+# Dark background with good contrast for readability
+background-color=#2e3440cc
+
+# Text color for notifications
+# Light text for good contrast against dark background
+text-color=#eceff4
+
+# Width of notifications
+# 300 pixels provides good readability without being intrusive
+width=300
+
+# Height of notifications
+# 100 pixels allows for multi-line content
+height=100
+
+# Margin around notifications
+# 10 pixels provides nice spacing from screen edges
+margin=10
+
+# Padding inside notifications
+# 5 pixels provides comfortable internal spacing
+padding=5
+
+# Border radius for rounded corners
+# 5 pixels provides modern, soft appearance
+border-radius=5
+
+# Border color and size
+# Light blue border for visual definition
+border-color=#88c0d0
+border-size=2
+
+# =============================================================================
+# POSITIONING
+# =============================================================================
+
+# Notification position on screen
+# top-right provides visibility without interfering with work
+anchor=top-right
+
+# Maximum number of notifications to show
+# 5 notifications prevents screen clutter
+max-visible=5
+
+# Layer for notifications (background, bottom, top, overlay)
+# overlay ensures notifications appear above other windows
+layer=overlay
+
+# =============================================================================
+# TIMING AND BEHAVIOR
+# =============================================================================
+
+# Default timeout for notifications (in milliseconds)
+# 5000ms (5 seconds) provides adequate reading time
+default-timeout=5000
+
+# Ignore timeout for notifications with critical urgency
+# Critical notifications stay visible until dismissed
+ignore-timeout-critical=true
+
+# Group notifications from the same application
+# Reduces clutter from multiple notifications
+group-by=app-name
+
+# =============================================================================
+# COLORS AND URGENCY
+# =============================================================================
+
+# Low urgency notifications
+# Less prominent styling for less important notifications
+[low]
+background-color=#2e344099
+text-color=#d8dee9
+border-color=#4c566a
+
+# Normal urgency notifications (default)
+# Standard styling for regular notifications
+[normal]
+background-color=#2e3440cc
+text-color=#eceff4
+border-color=#88c0d0
+
+# High urgency notifications
+# More prominent styling for important notifications
+[high]
+background-color=#bf616aee
+text-color=#eceff4
+border-color=#d08770
+
+# Critical urgency notifications
+# Most prominent styling for critical notifications
+[critical]
+background-color=#b48eadff
+text-color=#eceff4
+border-color=#ebcb8b
+default-timeout=0
+
+# =============================================================================
+# ICONS
+# =============================================================================
+
+# Enable icons in notifications
+# Icons provide visual context for notifications
+icons=true
+
+# Icon path for custom icons
+# Search additional directories for application icons
+icon-path=/usr/share/icons/Papirus-Dark/24x24/status/:/usr/share/icons/Papirus-Dark/24x24/apps/
+
+# Icon size
+# 24x24 pixels provides good visibility without being too large
+icon-size=24
+
+# Maximum icon size
+# Prevents oversized icons from breaking layout
+max-icon-size=64
+
+# =============================================================================
+# MARKUP AND FORMATTING
+# =============================================================================
+
+# Enable markup in notifications
+# Allows applications to use HTML-like formatting
+markup=true
+
+# Enable actions in notifications
+# Allows interactive notification buttons
+actions=true
+
+# Format for notification titles
+# %a = app name, %s = summary, %b = body
+format=<b>%s</b>\\n%b
+
+# =============================================================================
+# ADVANCED SETTINGS
+# =============================================================================
+
+# Mouse behavior
+# Left click dismisses notification, middle click performs default action
+mouse-left-click=dismiss
+mouse-middle-click=invoke-default-action
+mouse-right-click=none
+
+# Keyboard shortcuts
+# Shift+Space dismisses all notifications
+keyboard-shortcuts=true
+
+# History
+# Keep notification history for reference
+history=true
+
+# =============================================================================
+# CRITICAL NOTIFICATIONS
+# =============================================================================
+
+# Critical notification format
+# More prominent formatting for critical alerts
+critical-format=<b><u>%s</u></b>\\n%b
+
+# Critical notification behavior
+# Stay on screen and require user interaction
+critical-background-color=#b48eadff
+critical-text-color=#eceff4
+
+# =============================================================================
+# EDUCATIONAL NOTES
+# =============================================================================
+
+# This configuration is designed to be educational:
+# - Each section is clearly labeled with purpose
+# - Settings include comments explaining their function
+# - Colors chosen for good contrast and accessibility
+# - Timing balances visibility with non-intrusiveness
+# - Grouping reduces notification clutter
+
+# Learning tips:
+# - Background colors use alpha channel (cc = 80% opacity)
+# - Anchor positioning follows common desktop conventions
+# - Urgency levels allow for appropriate visual hierarchy
+# - Icons provide visual context for notification sources
+# - Markup enables rich text formatting in notifications
+
+# Customization:
+# - Copy this file to ~/.config/mako/config
+# - Modify colors to match your theme
+# - Adjust timing to suit your workflow
+# - Change positioning to your preferred location
+# - Add custom icon paths for your icon theme
+
+# Testing:
+# - Use notify-send to test notifications
+# - Example: notify-send "Test" "This is a test notification"
+# - Test different urgency levels with -u flag
+# - Example: notify-send -u critical "Critical" "Important alert"

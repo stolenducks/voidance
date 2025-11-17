@@ -1,0 +1,182 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "width": "request",
+    "spacing": 4,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "modules-left": [
+        "niri/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "battery",
+        "tray"
+    ],
+    "fixed-center": true,
+    "passthrough": false,
+    "ipc": true,
+    "exclusive": true,
+    "gtk-layer-shell": true,
+    "reload-style-on-change": false,
+    "modules": {
+        "niri/workspaces": {
+            "format": "{name}",
+            "format-icons": {
+                "1": "一",
+                "2": "二",
+                "3": "三",
+                "4": "四",
+                "5": "五",
+                "6": "六",
+                "7": "七",
+                "8": "八",
+                "9": "九",
+                "10": "十"
+            },
+            "persistent-workspaces": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": [],
+                "5": [],
+                "6": [],
+                "7": [],
+                "8": [],
+                "9": []
+            }
+        },
+        "clock": {
+            "format": "{:%H:%M}",
+            "format-alt": "{:%Y-%m-%d %H:%M:%S}",
+            "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode": "month",
+                "mode-mon-col": 3,
+                "weeks-pos": "right",
+                "on-scroll": 1,
+                "on-click-right": "mode",
+                "format": {
+                    "months": "<span color='#ffead3'><b>{}</b></span>",
+                    "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                    "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                    "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                    "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+                }
+            },
+            "actions": {
+                "on-click-right": "mode",
+                "on-click-forward": "tz_up",
+                "on-click-backward": "tz_down",
+                "on-scroll-up": "shift_up",
+                "on-scroll-down": "shift_down"
+            }
+        },
+        "pulseaudio": {
+            "format": "{volume}% {icon}",
+            "format-bluetooth": "{volume}% {icon}",
+            "format-bluetooth-muted": " {icon}",
+            "format-muted": "",
+            "format-source": "{volume}% {icon}",
+            "format-source-muted": "",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "on-click": "pavucontrol",
+            "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+            "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+            "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+            "scroll-step": 5,
+            "max-volume": 150,
+            "reverse-scrolling": false,
+            "tooltip": true,
+            "tooltip-format": "{desc} ({volume}%)"
+        },
+        "network": {
+            "interface": "",
+            "format-wifi": "{essid} ({signalStrength}%) ",
+            "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+            "format-linked": "{ifname} (No IP) 󰈂",
+            "format-disconnected": "Disconnected ⚠",
+            "format-alt": "{ifname}: {ipaddr}/{cidr}",
+            "tooltip-format": "{ifname}\n{ipaddr}/{cidr}\n↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+            "tooltip-format-wifi": "{essid} ({signalStrength}%) \n{ifname}\n{ipaddr}/{cidr}\n↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+            "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}\n↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+            "tooltip-format-disconnected": "Disconnected",
+            "max-length": 50,
+            "on-click": "nm-connection-editor",
+            "on-click-right": "nm-applet",
+            "interval": 5
+        },
+        "battery": {
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 15
+            },
+            "format": "{capacity}% {icon}",
+            "format-charging": "{capacity}% ",
+            "format-plugged": "{capacity}% ",
+            "format-alt": "{time} {icon}",
+            "format-good": "{capacity}% {icon}",
+            "format-full": "{capacity}% {icon}",
+            "format-warning": "{capacity}% {icon}",
+            "format-critical": "{capacity}% {icon}",
+            "format-icons": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            "tooltip-format": "{time} {capacity}% {power}W",
+            "tooltip-format-charging": "{time} {capacity}% {power}W",
+            "tooltip-format-plugged": "{time} {capacity}% {power}W",
+            "tooltip-format-not-charging": "{time} {capacity}% {power}W",
+            "tooltip-format-full": "{capacity}% Full",
+            "on-click": "",
+            "on-click-middle": "",
+            "on-click-right": "",
+            "on-scroll-up": "",
+            "on-scroll-down": "",
+            "interval": 60,
+            "design-capacity": false,
+            "full-threshold": 95,
+            "low-threshold": 15,
+            "bat": "BAT0",
+            "adapter": "ADP0",
+            "time-format": "{H}h{M}m"
+        },
+        "tray": {
+            "icon-size": 21,
+            "spacing": 10,
+            "reverse-direction": false,
+            "scroll-step": 5,
+            "on-click": "",
+            "on-click-middle": "",
+            "on-click-right": "",
+            "on-scroll-up": "",
+            "on-scroll-down": "",
+            "tooltip-format": "{tooltip}",
+            "show-passive-items": true,
+            "smooth-scrolling-threshold": 0
+        }
+    }
+}

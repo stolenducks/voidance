@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# elogind runit service script
+# Provides session management functionality for Voidance Linux
+
+exec 2>&1
+
+[ -r /etc/conf.d/elogind ] && . /etc/conf.d/elogind
+
+# Create necessary directories
+mkdir -p /run/systemd
+mkdir -p /run/user
+
+# Start elogind
+exec /usr/libexec/elogind/elogind

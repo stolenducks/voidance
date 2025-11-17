@@ -1,0 +1,40 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=File Manager
+Name[en]=File Manager
+Comment=Browse the file system
+Comment[en]=Browse the file system
+GenericName=File Manager
+GenericName[en]=File Manager
+Exec=thunar %U
+Terminal=false
+X-MultipleArgs=false
+Icon=system-file-manager
+StartupNotify=true
+StartupWMClass=Thunar
+Categories=System;FileManager;Utility;GTK;
+Keywords=file;manager;browse;disk;filesystem;folder;directory;
+MimeType=inode/directory;
+DBusActivatable=true
+Actions=NewWindow;Computer;Home;Trash;
+
+[Desktop Action NewWindow]
+Name=New Window
+Name[en]=New Window
+Exec=thunar
+
+[Desktop Action Computer]
+Name=Computer
+Name[en]=Computer
+Exec=thunar computer:///
+
+[Desktop Action Home]
+Name=Home Directory
+Name[en]=Home Directory
+Exec=thunar ~/
+
+[Desktop Action Trash]
+Name=Trash
+Name[en]=Trash
+Exec=thunar trash:///

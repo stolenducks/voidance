@@ -1,0 +1,144 @@
+# Wofi configuration for Sway compositor
+# Educational: Each setting includes explanation for learning
+
+# =============================================================================
+# APPEARANCE AND THEMING
+# =============================================================================
+
+# Enable/disable images in results
+allow_images=true
+
+# Allow markup in results
+allow_markup=true
+
+# GTK theme to use
+gtk_dark=true
+
+# =============================================================================
+# WINDOW BEHAVIOR
+# =============================================================================
+
+# Window mode (normal, fullscreen, center)
+mode=center
+
+# Window width and height
+width=600
+height=400
+
+# Window position (center, fixed)
+location=center
+
+# Allow multiple instances
+allow_other_clients=false
+
+# =============================================================================
+# SEARCH AND FILTERING
+# =============================================================================
+
+# Case sensitivity (sensitive, insensitive)
+insensitive=true
+
+# Search mode (contains, regex)
+search_mode=contains
+
+# Show search line
+show_search=true
+
+# =============================================================================
+# CONTENT CONFIGURATION
+# =============================================================================
+
+# Number of lines to show
+lines=15
+
+# Columns for grid layout
+columns=1
+
+# Dynamic number of lines based on content
+dynamic_lines=true
+
+# =============================================================================
+# KEYBINDINGS
+# =============================================================================
+
+# Key bindings for actions
+key_expand=Tab
+key_nav_up=Up
+key_nav_down=Down
+key_nav_left=Left
+key_nav_right=Right
+key_accept=Return
+key_dismiss=Escape
+key_exit=Control+g
+
+# =============================================================================
+# EXECUTION AND TERMINAL
+# =============================================================================
+
+# Terminal for running commands
+terminal=ghostty
+
+# Command to execute when item is selected
+exec=
+
+# =============================================================================
+# CACHE AND PERFORMANCE
+# =============================================================================
+
+# Cache file location
+cache_file=/home/$USER/.cache/wofi-cache
+
+# Enable/disable caching
+cache_file=false
+
+# =============================================================================
+# MONITOR CONFIGURATION
+# =============================================================================
+
+# Monitor to display on (empty for primary)
+monitor=
+
+# =============================================================================
+# CSS STYLING
+# =============================================================================
+
+# CSS file for custom styling
+# This allows complete customization of appearance
+# CSS file path is relative to this config file
+css_file=/home/stolenducks/.config/wofi/style.css
+
+# =============================================================================
+# EDUCATIONAL NOTES
+# =============================================================================
+
+# This wofi configuration is designed to be educational:
+# - Each section is clearly labeled with purpose
+# - Settings include comments explaining their function
+# - Values chosen for optimal user experience
+# - Performance settings balanced for responsiveness
+# - Keybindings follow common conventions
+
+# Learning tips:
+# - Center mode provides better focus on search results
+# - Insensitive search makes finding items easier
+# - Images and markup enhance visual presentation
+# - Cache can improve performance for large application lists
+
+# Customization:
+# - Modify width/height for your screen size
+# - Change keybindings to match your preferences
+# - Adjust lines/columns for content density
+# - Enable caching for faster startup with many applications
+# - Use CSS file for complete visual customization
+
+# Integration with Sway:
+# - This configuration works seamlessly with Sway
+# - Terminal integration uses Ghostty for consistency
+# - Center mode works well with tiling workflows
+# - Keybindings avoid conflicts with Sway defaults
+
+# Performance considerations:
+# - Disable images on slower systems
+# - Enable cache for faster repeated launches
+# - Reduce lines for faster rendering
+# - Use simple CSS for better performance

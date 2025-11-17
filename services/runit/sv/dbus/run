@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# dbus runit service script
+# System message bus for inter-process communication
+
+exec 2>&1
+
+[ -r /etc/conf.d/dbus ] && . /etc/conf.d/dbus
+
+# Create necessary directories
+mkdir -p /run/dbus
+
+# Clean up any existing pid file
+rm -f /run/dbus/pid
+
+# Start dbus daemon
+exec /usr/bin/dbus-daemon --system --nofork --syslog-only

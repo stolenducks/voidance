@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# SDDM runit service script
+# Simple Desktop Display Manager for Voidance Linux
+
+exec 2>&1
+
+[ -r /etc/conf.d/sddm ] && . /etc/conf.d/sddm
+
+# Ensure necessary directories exist
+mkdir -p /run/sddm
+mkdir -p /var/log/sddm
+mkdir -p /var/lib/sddm
+
+# Set proper permissions
+chmod 755 /run/sddm
+chmod 755 /var/log/sddm
+chmod 755 /var/lib/sddm
+
+# Start SDDM
+exec /usr/bin/sddm

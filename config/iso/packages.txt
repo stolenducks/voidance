@@ -1,0 +1,527 @@
+# Voidance Complete Package Manifest
+# This file contains the complete package list for the Voidance ISO
+# Includes all components from previous changes: services, desktop, applications, and fallback
+
+# ============================================================================
+# BASE SYSTEM PACKAGES
+# ============================================================================
+
+# Core Void Linux system
+base-system
+linux
+linux-firmware
+dracut
+e2fsprogs
+dosfstools
+btrfs-progs
+xfsprogs
+f2fs-tools
+
+# Package management
+xbps
+curl
+wget
+rsync
+tar
+unzip
+zip
+p7zip
+
+# System utilities
+util-linux
+coreutils
+findutils
+grep
+sed
+awk
+gawk
+diffutils
+patch
+file
+which
+tree
+htop
+iotop
+lsof
+strace
+ltrace
+
+# ============================================================================
+# AUDIO SERVICES (from 01-add-system-services)
+# ============================================================================
+
+# Audio system
+pipewire
+pipewire-pulse
+wireplumber
+pamixer
+pulsemixer
+
+# Audio utilities
+alsa-utils
+pavucontrol
+helvum
+
+# ============================================================================
+# NETWORK SERVICES (from 01-add-system-services)
+# ============================================================================
+
+# Network management
+NetworkManager
+nmcli
+network-manager-applet
+
+# Network utilities
+iw
+wpa_supplicant
+dhcpcd
+openssh
+wget
+curl
+
+# ============================================================================
+# DISPLAY MANAGER (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# Display manager
+sddm
+sddm-themes
+
+# Session management
+seatd
+polkit
+elogind
+
+# ============================================================================
+# NOTIFICATION SYSTEM (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# Notification daemon
+mako
+libnotify
+
+# Notification utilities
+dunstify
+
+# ============================================================================
+# TERMINAL EMULATOR (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# Terminal emulator
+ghostty
+
+# Terminal utilities
+tmux
+screen
+
+# ============================================================================
+# WAYBAR STATUS BAR (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# Status bar
+waybar
+
+# Status bar utilities
+jq
+json-c
+
+# ============================================================================
+# WOFI LAUNCHER (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# Application launcher
+wofi
+
+# Launcher utilities
+rofi-wayland
+
+# ============================================================================
+# FILE MANAGER (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# File manager
+thunar
+thunar-volman
+thunar-archive-plugin
+
+# Archive utilities
+file-roller
+unar
+p7zip
+zip
+unzip
+
+# ============================================================================
+# FONT THEMING (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# Font rendering
+fontconfig
+freetype
+
+# Font packages
+noto-fonts-ttf
+noto-fonts-emoji
+jetbrains-mono-ttf
+font-awesome-ttf
+
+# ============================================================================
+# IDLE LOCK (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# Screen locking
+swaylock
+swayidle
+
+# Screen utilities
+brightnessctl
+
+# ============================================================================
+# NIRI COMPOSITOR (from 02-add-desktop-environment-stack)
+# ============================================================================
+
+# Primary compositor
+niri
+
+# Wayland utilities
+wayland-protocols
+wayland-utils
+
+# ============================================================================
+# SWAY FALLBACK COMPOSITOR (from 04-add-fallback-compositor)
+# ============================================================================
+
+# Fallback compositor
+sway
+swaybg
+swaylock
+
+# Sway utilities
+i3status
+i3blocks
+
+# ============================================================================
+# DESKTOP APPLICATIONS (from 03-add-desktop-applications)
+# ============================================================================
+
+# Web browser
+firefox
+firefox-wayland
+
+# Text editor
+vim
+vim-x11
+neovim
+
+# Image viewer
+imv
+feh
+
+# Document viewer
+evince
+evince-wayland
+
+# Media player
+mpv
+mpv-wayland
+
+# Audio player
+audacious
+
+# System monitor
+btop
+htop
+
+# ============================================================================
+# DEVELOPMENT TOOLS
+# ============================================================================
+
+# Version control
+git
+git-lfs
+
+# Build tools
+make
+gcc
+gcc-c++
+pkg-config
+autoconf
+automake
+libtool
+cmake
+ninja
+
+# Languages
+python3
+python3-pip
+nodejs
+npm
+rust
+cargo
+
+# ============================================================================
+# MULTIMEDIA CODECS
+# ============================================================================
+
+# Audio/video codecs
+ffmpeg
+gstreamer1
+gstreamer1-plugins-base
+gstreamer1-plugins-good
+gstreamer1-plugins-bad
+gstreamer1-plugins-ugly
+
+# Image formats
+libpng
+libjpeg-turbo
+libwebp
+libtiff
+
+# ============================================================================
+# HARDWARE SUPPORT
+# ============================================================================
+
+# GPU drivers
+mesa-dri
+vulkan-loader
+vulkan-tools
+
+# Intel GPU support
+intel-media-driver
+libva-intel-driver
+
+# AMD GPU support
+mesa-vulkan-radeon
+libva-amdgpu-driver
+
+# NVIDIA GPU support
+nvidia
+nvidia-settings
+nvidia-smi
+
+# Wi-Fi drivers
+linux-firmware-intel
+linux-firmware-realtek
+linux-firmware-atheros
+
+# Bluetooth
+bluez
+bluez-utils
+
+# Printer support
+cups
+cups-filters
+system-config-printer
+
+# ============================================================================
+# SYSTEM UTILITIES
+# ============================================================================
+
+# Power management
+tlp
+powertop
+
+# Battery monitoring
+acpi
+acpid
+
+# Temperature monitoring
+lm_sensors
+xsensors
+
+# Disk utilities
+gparted
+testdisk
+photorec
+
+# Backup utilities
+rsync
+borgbackup
+
+# ============================================================================
+# SECURITY TOOLS
+# ============================================================================
+
+# Firewall
+ufw
+gufw
+
+# Authentication
+pam
+gnupg2
+
+# Security utilities
+fail2ban
+rkhunter
+chkrootkit
+
+# ============================================================================
+# DOCUMENTATION
+# ============================================================================
+
+# Manual pages
+man-pages
+man-pages-posix
+
+# Documentation tools
+info
+texinfo
+
+# ============================================================================
+# THEMES AND APPEARANCE
+# ============================================================================
+
+# GTK themes
+adwaita-icon-theme
+gnome-themes-extra
+
+# Qt themes
+qt5ct
+qt6ct
+
+# Icon themes
+papirus-icon-theme
+
+# Cursor themes
+breeze-cursors
+
+# ============================================================================
+# ACCESSIBILITY
+# ============================================================================
+
+# Screen reader
+espeak-ng
+
+# Accessibility tools
+at-spi2-core
+at-spi2-atk
+
+# ============================================================================
+# VIRTUALIZATION
+# ============================================================================
+
+# Virtualization tools
+qemu
+qemu-system-x86_64
+libvirt
+virt-manager
+virt-install
+
+# Container tools
+podman
+docker
+docker-compose
+
+# ============================================================================
+# GAMING (Optional)
+# ============================================================================
+
+# Gaming platform
+steam
+steam-wayland
+
+# Game launchers
+lutris
+heroic-games-launcher
+
+# Gaming utilities
+gamemode
+gamescope
+
+# ============================================================================
+# OFFICE (Optional)
+# ============================================================================
+
+# Office suite
+libreoffice
+libreoffice-i18n
+
+# PDF tools
+pdfarranger
+pdfmod
+
+# ============================================================================
+# CUSTOM VOIDANCE PACKAGES
+# ============================================================================
+
+# Custom Voidance configuration packages (if available)
+# voidance-config
+# voidance-themes
+# voidance-scripts
+
+# ============================================================================
+# DEVELOPMENT AND DEBUGGING
+# ============================================================================
+
+# Debugging tools
+gdb
+valgrind
+strace
+ltrace
+
+# Performance tools
+perf
+linux-tools
+
+# Network debugging
+nmap
+wireshark-cli
+tcpdump
+
+# ============================================================================
+# FINAL SYSTEM PACKAGES
+# ============================================================================
+
+# Bootloader
+grub
+grub-i386-efi
+grub-x86_64-efi
+efibootmgr
+
+# System initialization
+runit
+runit-void
+
+# Locale support
+glibc-locales
+
+# Time zone support
+tzdata
+
+# Shell
+bash
+bash-completion
+zsh
+zsh-completions
+
+# Text editors
+nano
+micro
+
+# File compression
+xz
+lz4
+zstd
+gzip
+bzip2
+
+# System monitoring
+psmisc
+procps-ng
+
+# Hardware information
+pciutils
+usbutils
+dmidecode
+
+# Network tools
+iproute2
+iputils
+net-tools
+bind-utils
+
+# Package building
+xbps-triggers
+void-repo-nonfree
+void-repo-multilib
+void-repo-multilib-nonfree

@@ -1,0 +1,254 @@
+// Niri Configuration for Voidance Linux
+// Default configuration for scrollable tiling Wayland compositor
+
+// Input configuration
+input {
+    keyboard {
+        repeat-rate 25
+        repeat-delay 600
+        xkb-layout "us"
+        xkb-variant ""
+        xkb-options ""
+    }
+    
+    touchpad {
+        accel-profile "adaptive"
+        accel-speed 0.0
+        natural-scroll false
+        tap-to-click true
+        drag-lock false
+        disable-while-typing true
+        middle-emulation false
+    }
+    
+    mouse {
+        accel-profile "adaptive"
+        accel-speed 0.0
+        natural-scroll false
+    }
+}
+
+// Output configuration
+// Auto-detect outputs and apply sensible defaults
+output "eDP-1" {
+    // Laptop display configuration
+    mode 1920x1080@60.0
+    scale 1.25
+    position x=0 y=0
+    adaptive-sync false
+    background-color "#24273a"
+}
+
+output "HDMI-A-1" {
+    // External display configuration
+    mode 1920x1080@60.0
+    scale 1.0
+    position x=1920 y=0
+    adaptive-sync false
+    background-color "#24273a"
+}
+
+output "DP-1" {
+    // DisplayPort display configuration
+    mode 1920x1080@60.0
+    scale 1.0
+    position x=1920 y=0
+    adaptive-sync false
+    background-color "#24273a"
+}
+
+// Layout configuration
+layout {
+    gaps 8
+    default-width 800
+    default-height 600
+    
+    preset-column-widths {
+        proportion 1 10
+        proportion 1 5
+        proportion 2 5
+        proportion 3 5
+        proportion 4 5
+        proportion 5 5
+    }
+    
+    preset-window-heights {
+        proportion 1 10
+        proportion 1 5
+        proportion 2 5
+        proportion 3 5
+        proportion 4 5
+        proportion 5 5
+    }
+    
+    center-column-width 1
+}
+
+// Keybindings
+// Mod = Super (Windows key)
+bind Mod+Return { spawn "ghostty" }
+bind Mod+D { spawn "wofi" --show drun }
+bind Mod+Q { close-window }
+bind Mod+Shift+Q { close-window --force }
+
+bind Mod+Left { focus-column left }
+bind Mod+Right { focus-column right }
+bind Mod+Up { focus-window up }
+bind Mod+Down { focus-window down }
+
+bind Mod+Shift+Left { move-column left }
+bind Mod+Shift+Right { move-column right }
+bind Mod+Shift+Up { move-window up }
+bind Mod+Shift+Down { move-window down }
+
+bind Mod+1 { focus-workspace 1 }
+bind Mod+2 { focus-workspace 2 }
+bind Mod+3 { focus-workspace 3 }
+bind Mod+4 { focus-workspace 4 }
+bind Mod+5 { focus-workspace 5 }
+bind Mod+6 { focus-workspace 6 }
+bind Mod+7 { focus-workspace 7 }
+bind Mod+8 { focus-workspace 8 }
+bind Mod+9 { focus-workspace 9 }
+
+bind Mod+Shift+1 { consume-window-into-column --column 1 }
+bind Mod+Shift+2 { consume-window-into-column --column 2 }
+bind Mod+Shift+3 { consume-window-into-column --column 3 }
+bind Mod+Shift+4 { consume-window-into-column --column 4 }
+bind Mod+Shift+5 { consume-window-into-column --column 5 }
+bind Mod+Shift+6 { consume-window-into-column --column 6 }
+bind Mod+Shift+7 { consume-window-into-column --column 7 }
+bind Mod+Shift+8 { consume-window-into-column --column 8 }
+bind Mod+Shift+9 { consume-window-into-column --column 9 }
+
+bind Mod+Comma { consume-or-expel-window-left }
+bind Mod+Period { consume-or-expel-window-right }
+
+bind Mod+Shift+Space { toggle-column-tabbed-display }
+bind Mod+Space { focus-column-first-or-last }
+
+bind Mod+F { fullscreen-window }
+bind Mod+Shift+F { fullscreen-column }
+
+bind Mod+Ctrl+Left { set-column-width "-10%" }
+bind Mod+Ctrl+Right { set-column-width "+10%" }
+bind Mod+Ctrl+Up { set-window-height "-10%" }
+bind Mod+Ctrl+Down { set-window-height "+10%" }
+
+bind Mod+Home { focus-column-first }
+bind Mod+End { focus-column-last }
+bind Mod+Ctrl+Home { focus-window-first }
+bind Mod+Ctrl+End { focus-window-last }
+
+bind Mod+Shift+Home { swap-column-with-first }
+bind Mod+Shift+End { swap-column-with-last }
+bind Mod+Ctrl+Shift+Home { swap-window-with-first }
+bind Mod+Ctrl+Shift+End { swap-window-with-last }
+
+bind Mod+S { layout "sv" } // Spiral
+bind Mod+T { layout "st" } // Stack
+bind Mod+Y { layout "h" }  // Horizontal
+
+bind Mod+Shift+S { layout "v" } // Vertical
+bind Mod+Shift+T { layout "monocle" } // Monocle
+
+bind Mod+R { spawn "wofi" --show run }
+bind Mod+Ctrl+R { reload-config }
+bind Mod+Shift+R { switch-preset-column-width }
+
+bind Mod+Print { spawn "grim" -o "$(niri msg outputs | jq -r '.[0].name')" - | "wl-copy" }
+bind Mod+Shift+Print { spawn "grim" -g "$(slurp)" - | "wl-copy" }
+bind Mod+Ctrl+Print { spawn "wf-recorder" -f "$(xdg-user-dir VIDEOS)/recording-$(date +%Y%m%d-%H%M%S).mp4" }
+
+bind Mod+L { spawn "swaylock" -f -c 000000 }
+bind Mod+Shift+E { spawn "niri" msg quit }
+
+// Volume controls
+bind XF86AudioRaiseVolume { spawn "pactl" set-sink-volume @DEFAULT_SINK@ +5% }
+bind XF86AudioLowerVolume { spawn "pactl" set-sink-volume @DEFAULT_SINK@ -5% }
+bind XF86AudioMute { spawn "pactl" set-sink-mute @DEFAULT_SINK@ toggle }
+bind XF86AudioMicMute { spawn "pactl" set-source-mute @DEFAULT_SOURCE@ toggle }
+
+// Brightness controls
+bind XF86MonBrightnessUp { spawn "brightnessctl" set +10% }
+bind XF86MonBrightnessDown { spawn "brightnessctl" set 10%- }
+
+// Media controls
+bind XF86AudioPlay { spawn "playerctl" play-pause }
+bind XF86AudioNext { spawn "playerctl" next }
+bind XF86AudioPrev { spawn "playerctl" previous }
+
+// Window rules
+window-rule {
+    app-id "ghostty"
+    default-width 800
+    default-height 600
+}
+
+window-rule {
+    app-id "wofi"
+    floating true
+    width 50%
+    height 40%
+    center true
+}
+
+window-rule {
+    app-id "swaylock"
+    fullscreen true
+}
+
+window-rule {
+    app-id "pavucontrol"
+    floating true
+    default-width 800
+    default-height 600
+}
+
+window-rule {
+    app-id "nm-connection-editor"
+    floating true
+    default-width 600
+    default-height 500
+}
+
+// Environment variables
+environment {
+    XDG_CURRENT_DESKTOP "niri"
+    XDG_SESSION_DESKTOP "niri"
+    XDG_SESSION_TYPE "wayland"
+    MOZ_ENABLE_WAYLAND "1"
+    QT_QPA_PLATFORM "wayland"
+    GTK_USE_PORTAL "1"
+    NIXOS_OZONE_WL "1"
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+    XCURSOR_THEME "Adwaita"
+    XCURSOR_SIZE "24"
+}
+
+// Startup applications
+spawn-at-startup "waybar"
+spawn-at-startup "nm-applet" "--indicator"
+spawn-at-startup "blueman-applet"
+
+// Cursor configuration
+cursor {
+    theme "Adwaita"
+    size 24
+}
+
+// Hotkey overlay
+hotkey-overlay {
+    skip-at-startup true
+}
+
+// Prefer no client-side decorations
+prefer-no-csd true
+
+// Debug settings (uncomment for debugging)
+// debug {
+//     enable-dmabuf-scanout true
+//     enable-toplevel-protect true
+//     enable-async-cursor true
+//     enable-frame-pacing true
+// }

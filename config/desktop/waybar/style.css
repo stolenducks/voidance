@@ -1,0 +1,462 @@
+/* Waybar CSS for Voidance Linux */
+/* Gruvbox dark theme with modern styling */
+
+@define-color bg #282828;
+@define-color bg-alt #1c1c1c;
+@define-color fg #ebdbb2;
+@define-color fg-alt #d5c4a1;
+@define-color accent #458588;
+@define-color accent-bright #83a598;
+@define-color urgent #fb4934;
+@define-color warning #fabd2f;
+@define-color success #b8bb26;
+@define-color border #3c3836;
+@define-color border-bright #665c54;
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Fira Code Nerd Font", monospace;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @bg;
+    color: @fg;
+    border-bottom: 2px solid @border;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* Modules */
+#workspaces,
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#tray {
+    background-color: @bg;
+    margin: 0 4px;
+    padding: 0 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#workspaces {
+    background-color: @bg-alt;
+}
+
+#workspaces button {
+    background: transparent;
+    color: @fg-alt;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin: 2px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background-color: @border;
+    color: @fg;
+}
+
+#workspaces button.active {
+    background-color: @accent;
+    color: @bg;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background-color: @urgent;
+    color: @fg;
+}
+
+#workspaces button.persistent {
+    color: @fg-alt;
+    font-style: italic;
+}
+
+#clock {
+    font-weight: bold;
+    color: @accent-bright;
+}
+
+#clock:hover {
+    background-color: @border;
+}
+
+#pulseaudio {
+    color: @accent-bright;
+}
+
+#pulseaudio.muted {
+    color: @fg-alt;
+}
+
+#pulseaudio:hover {
+    background-color: @border;
+}
+
+#network {
+    color: @success;
+}
+
+#network.disconnected {
+    color: @warning;
+}
+
+#network:hover {
+    background-color: @border;
+}
+
+#battery {
+    color: @success;
+}
+
+#battery.charging {
+    color: @accent-bright;
+}
+
+#battery.warning:not(.charging) {
+    color: @warning;
+}
+
+#battery.critical:not(.charging) {
+    color: @urgent;
+    animation: blink 1s infinite;
+}
+
+#battery:hover {
+    background-color: @border;
+}
+
+#tray {
+    background-color: @bg-alt;
+    padding: 0 4px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @warning;
+}
+
+/* Tooltip styling */
+tooltip {
+    background-color: @bg-alt;
+    border: 1px solid @border;
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: @fg;
+}
+
+tooltip label {
+    color: @fg;
+}
+
+/* Module specific styling */
+#pulseaudio.microphone {
+    color: @warning;
+}
+
+#network.ethernet {
+    color: @accent-bright;
+}
+
+#network.wifi {
+    color: @success;
+}
+
+#network.linked {
+    color: @warning;
+}
+
+#battery.good {
+    color: @success;
+}
+
+#battery.full {
+    color: @accent-bright;
+}
+
+/* Animation for critical battery */
+@keyframes blink {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Left side modules */
+.modules-left {
+    margin-left: 8px;
+}
+
+/* Center modules */
+.modules-center {
+    margin: 0 auto;
+}
+
+/* Right side modules */
+.modules-right {
+    margin-right: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #workspaces button {
+        padding: 2px 4px;
+        margin: 1px;
+        font-size: 11px;
+    }
+    
+    #clock {
+        font-size: 11px;
+    }
+    
+    #pulseaudio,
+    #network,
+    #battery,
+    #tray {
+        padding: 0 4px;
+        margin: 0 2px;
+    }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    window#waybar {
+        background-color: @bg;
+        color: @fg;
+    }
+}
+
+/* Light mode support (if needed) */
+@media (prefers-color-scheme: light) {
+    @define-color bg #fbf1c7;
+    @define-color bg-alt #f9f5d7;
+    @define-color fg #3c3836;
+    @define-color fg-alt #665c54;
+    @define-color accent #458588;
+    @define-color accent-bright #076678;
+    @define-color urgent #9d0006;
+    @define-color warning #b57614;
+    @define-color success #79740e;
+    @define-color border #d5c4a1;
+    @define-color border-bright #bdae93;
+    
+    window#waybar {
+        background-color: @bg;
+        color: @fg;
+        border-bottom: 2px solid @border;
+    }
+    
+    #workspaces {
+        background-color: @bg-alt;
+    }
+    
+    #tray {
+        background-color: @bg-alt;
+    }
+    
+    tooltip {
+        background-color: @bg-alt;
+        border: 1px solid @border;
+        color: @fg;
+    }
+}
+
+/* Custom module styling */
+#custom-appmenu {
+    background-color: @bg-alt;
+    color: @accent-bright;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#custom-appmenu:hover {
+    background-color: @accent;
+    color: @bg;
+}
+
+#custom-power {
+    background-color: @urgent;
+    color: @fg;
+    padding: 0 8px;
+    border-radius: 8px;
+}
+
+#custom-power:hover {
+    background-color: @warning;
+    color: @bg;
+}
+
+#custom-weather {
+    color: @accent-bright;
+}
+
+#custom-weather:hover {
+    background-color: @border;
+}
+
+/* Memory and CPU modules (if added) */
+#memory {
+    color: @warning;
+}
+
+#cpu {
+    color: @accent-bright;
+}
+
+#disk {
+    color: @success;
+}
+
+#temperature {
+    color: @urgent;
+}
+
+#temperature.critical {
+    color: @urgent;
+    animation: blink 1s infinite;
+}
+
+/* Language/keyboard module */
+#language {
+    color: @accent-bright;
+    padding: 0 8px;
+    border-radius: 8px;
+}
+
+#language:hover {
+    background-color: @border;
+}
+
+/* Idle inhibitor module */
+#idle_inhibitor {
+    color: @success;
+}
+
+#idle_inhibitor.activated {
+    color: @warning;
+}
+
+/* MPD module */
+#mpd {
+    color: @accent-bright;
+}
+
+#mpd.disconnected {
+    color: @fg-alt;
+}
+
+#mpd.stopped {
+    color: @warning;
+}
+
+#mpd.paused {
+    color: @warning;
+}
+
+/* Task manager module */
+#taskbar {
+    background-color: @bg-alt;
+    border-radius: 8px;
+    margin: 0 4px;
+    padding: 0 4px;
+}
+
+#taskbar button {
+    background: transparent;
+    color: @fg-alt;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin: 2px;
+    transition: all 0.2s ease;
+}
+
+#taskbar button:hover {
+    background-color: @border;
+    color: @fg;
+}
+
+#taskbar button.active {
+    background-color: @accent;
+    color: @bg;
+}
+
+#taskbar button.urgent {
+    background-color: @urgent;
+    color: @fg;
+}
+
+/* Scratchpad module */
+#scratchpad {
+    color: @accent-bright;
+}
+
+#scratchpad.empty {
+    color: @fg-alt;
+}
+
+/* Sway mode module */
+#mode {
+    background-color: @urgent;
+    color: @fg;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Window title module */
+#window {
+    color: @fg-alt;
+    padding: 0 8px;
+}
+
+/* System tray specific styling */
+#tray menu {
+    background-color: @bg-alt;
+    border: 1px solid @border;
+    border-radius: 8px;
+    color: @fg;
+}
+
+#tray menuitem {
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+#tray menuitem:hover {
+    background-color: @border;
+}
+
+#tray separator {
+    background-color: @border;
+    margin: 4px 0;
+}
+
+/* Final polish */
+window#waybar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modules-left > :first-child,
+.modules-center > :first-child,
+.modules-right > :first-child {
+    margin-left: 0;
+}
+
+.modules-left > :last-child,
+.modules-center > :last-child,
+.modules-right > :last-child {
+    margin-right: 0;
+}

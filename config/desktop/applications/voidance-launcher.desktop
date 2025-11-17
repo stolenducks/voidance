@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Application Launcher
+Comment=Launch applications
+Exec=wofi --show drun
+Icon=applications-system
+Terminal=false
+Categories=System;Application;
+Keywords=launcher;apps;applications;
+StartupNotify=false

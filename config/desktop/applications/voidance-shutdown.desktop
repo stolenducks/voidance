@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Shutdown
+Comment=Shutdown the system
+Exec=sh -c 'systemctl poweroff'
+Icon=system-shutdown
+Terminal=false
+Categories=System;Shutdown;
+Keywords=shutdown;poweroff;system;
+StartupNotify=false

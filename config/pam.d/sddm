@@ -1,0 +1,23 @@
+# PAM configuration for SDDM display manager
+# Voidance Linux - System Services
+
+auth       sufficient   pam_rootok.so
+auth       sufficient   pam_unix.so try_first_pass likeauth nullok
+auth       sufficient   pam_elogind.so
+auth       required     pam_deny.so
+
+account    sufficient   pam_unix.so
+account    sufficient   pam_elogind.so
+account    required     pam_deny.so
+
+password   sufficient   pam_unix.so try_first_pass use_authtok nullok sha512 shadow
+password   sufficient   pam_elogind.so
+password   required     pam_deny.so
+
+session    required     pam_limits.so
+session    required     pam_unix.so
+session    required     pam_elogind.so
+session    optional     pam_keyinit.so revoke
+session    optional     pam_mktemp.so
+session    optional     pam_systemd.so
+session    required     pam_mkhomedir.so skel=/etc/skel/ umask=0077

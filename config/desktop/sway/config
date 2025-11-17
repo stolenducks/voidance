@@ -1,0 +1,302 @@
+# Sway Configuration for Voidance Desktop Environment
+# Default configuration with educational comments
+# i3-compatible Wayland compositor configuration
+
+# =============================================================================
+# VARIABLES AND SETTINGS
+# =============================================================================
+
+# Set modifier key (Mod1=Alt, Mod4=Super/Windows)
+set $mod Mod4
+
+# Set terminal emulator
+set $term ghostty
+
+# Set application launcher
+set $menu wofi --show drun -I
+
+# Set wallpaper directory
+set $wallpaper_dir /usr/share/backgrounds/voidance
+
+# =============================================================================
+# APPEARANCE AND THEMING
+# =============================================================================
+
+# Font for window titles and status bar
+font pango:Montserrat 10
+
+# Theme colors (Nord-inspired)
+set $bg_color #2e3440
+set $fg_color #eceff4
+set $accent_color #88c0d0
+set $urgent_color #bf616a
+set $border_color #4c566a
+
+# Window border settings
+default_border pixel 2
+default_floating_border normal
+hide_edge_borders smart
+
+# Window colors
+# class                 border  backgr. text    indicator child_border
+client.focused          $accent_color $bg_color $fg_color $accent_color $accent_color
+client.focused_inactive $border_color $bg_color $fg_color $border_color $border_color
+client.unfocused        $border_color $bg_color $fg_color $border_color $border_color
+client.urgent           $urgent_color $urgent_color $fg_color $urgent_color $urgent_color
+client.placeholder      $border_color $bg_color $fg_color $border_color $border_color
+
+# =============================================================================
+# OUTPUT CONFIGURATION
+# =============================================================================
+
+# Default wallpaper (if available)
+output * bg $wallpaper_dir/voidance-wallpaper.png fill
+
+# Output configuration for different displays
+# Uncomment and modify as needed for your setup
+# output HDMI-A-1 resolution 1920x1080 position 0,0
+# output DP-1 resolution 2560x1440 position 1920,0
+
+# =============================================================================
+# INPUT CONFIGURATION
+# =============================================================================
+
+# Keyboard configuration
+input "type:keyboard" {
+    xkb_layout us
+    xkb_variant ""
+    xkb_options ""
+}
+
+# Touchpad configuration
+input "type:touchpad" {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+}
+
+# Mouse configuration
+input "type:pointer" {
+    accel_profile flat
+    pointer_accel 0.0
+}
+
+# =============================================================================
+# WORKSPACE CONFIGURATION
+# =============================================================================
+
+# Define workspaces
+set $ws1 "1: Terminal"
+set $ws2 "2: Web"
+set $ws3 "3: Code"
+set $ws4 "4: Files"
+set $ws5 "5: Media"
+set $ws6 "6: Communication"
+set $ws7 "7: System"
+set $ws8 "8: Gaming"
+set $ws9 "9: Virtual"
+set $ws10 "10: Misc"
+
+# Assign workspaces to outputs (for multi-monitor setups)
+# workspace $ws1 output HDMI-A-1
+# workspace $ws2 output HDMI-A-1
+# workspace $ws3 output DP-1
+# workspace $ws4 output DP-1
+
+# =============================================================================
+# WINDOW RULES
+# =============================================================================
+
+# Floating windows
+for_window [window_role="pop-up"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="blueman-manager"] floating enable
+for_window [app_id="nm-connection-editor"] floating enable
+
+# Workspace assignments
+assign [app_id="firefox"] $ws2
+assign [app_id="chromium"] $ws2
+assign [app_id="code"] $ws3
+assign [app_id="thunar"] $ws4
+assign [app_id="vlc"] $ws5
+assign [app_id="mpv"] $ws5
+assign [app_id="discord"] $ws6
+assign [app_id="signal"] $ws6
+assign [app_id="steam"] $ws8
+
+# =============================================================================
+# KEYBINDINGS - MODIFIER + KEYS
+# =============================================================================
+
+# Basic operations
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+
+# Focus movement
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Window movement
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Workspace navigation
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Move window to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Workspace navigation (next/previous)
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Layout management
+bindsym $mod+h splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Fullscreen and floating
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+
+# Focus management
+bindsym $mod+a focus parent
+bindsym $mod+space focus mode_toggle
+
+# Resize mode
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# =============================================================================
+# SYSTEM KEYBINDINGS
+# =============================================================================
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5-%
+
+# Media control
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Screenshot
+bindsym Print exec grim ~/Pictures/Screenshot-$(date +%Y%m%d-%H%M%S).png
+bindsym $mod+Print exec slurp | grim -g - ~/Pictures/Screenshot-$(date +%Y%m%d-%H%M%S).png
+
+# =============================================================================
+# APPLICATION LAUNCHERS
+# =============================================================================
+
+# Common applications
+bindsym $mod+Shift+f exec thunar
+bindsym $mod+Shift+w exec firefox
+bindsym $mod+Shift+c exec code
+bindsym $mod+Shift+m exec pavucontrol
+bindsym $mod+Shift+n exec networkmanager_dmenu
+
+# =============================================================================
+# BAR CONFIGURATION
+# =============================================================================
+
+# Launch Waybar (shared with Niri configuration)
+exec_always waybar
+
+# =============================================================================
+# AUTOSTART APPLICATIONS
+# =============================================================================
+
+# Start essential services
+exec_always mako
+exec_always wl-paste --type text --watch clipman store --histlen=50
+exec_always wl-paste --type image --watch clipman store --histlen=50
+
+# =============================================================================
+# IDLE AND LOCKING
+# =============================================================================
+
+# Idle management with swayidle
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 000000'
+
+# Lock screen binding
+bindsym $mod+Control+l exec swaylock -f -c 000000
+
+# =============================================================================
+# EDUCATIONAL NOTES
+# =============================================================================
+
+# This Sway configuration is designed to be educational:
+# - Each section is clearly labeled with purpose
+# - Keybindings follow i3 conventions for familiarity
+# - Variables are used for easy customization
+# - Comments explain the function of each setting
+# - Window rules provide intelligent application behavior
+# - System integration includes multimedia keys
+
+# Learning tips:
+# - Mod4 is the Super/Windows key, Mod1 is Alt
+# - Workspaces are numbered 1-10 with descriptive names
+# - Floating windows are automatically enabled for dialogs
+# - Layout modes: split (default), stacking, tabbed
+# - Resize mode allows precise window sizing
+
+# Customization:
+# - Copy this file to ~/.config/sway/config
+# - Modify the $mod variable to change modifier key
+# - Adjust colors to match your preferred theme
+# - Add or modify workspace assignments for your applications
+# - Customize keybindings to match your workflow
+
+# Testing:
+# - Use 'swaymsg -t get_tree' to see window tree
+# - Use 'swaymsg -t get_inputs' to see input devices
+# - Use 'swaymsg -t get_outputs' to see display configuration
+# - Test keybindings with 'swaymsg -t get_binding_state'
+
+# Include additional configuration files
+include /etc/sway/config.d/*
+include ~/.config/sway/config.d/*

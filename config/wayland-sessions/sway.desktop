@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Sway (Voidance)
+Comment=Voidance desktop environment with Sway compositor
+Exec=sway
+TryExec=sway
+Type=Application
+DesktopNames=voidance-sway
+X-GDM-SessionRegisters=true
+X-Ubuntu-Gettext-Domain=gnome-session-3.0
+Keywords=wayland;tiling;window-manager;sway;i3;

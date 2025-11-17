@@ -1,0 +1,411 @@
+{
+    "version": "1.0.0",
+    "components": {
+        "niri": {
+            "version": "1.0.0",
+            "enabled": true,
+            "debug": false,
+            "service": "niri",
+            "settings": {
+                "outputs": [],
+                "layout": {
+                    "default_width": 800,
+                    "default_height": 600,
+                    "gaps": 8,
+                    "center_column": {
+                        "width": 1
+                    },
+                    "preset_column_widths": [
+                        [1, 10],
+                        [1, 5],
+                        [2, 5],
+                        [3, 5],
+                        [4, 5],
+                        [5, 5]
+                    ],
+                    "preset_window_heights": [
+                        [1, 10],
+                        [1, 5],
+                        [2, 5],
+                        [3, 5],
+                        [4, 5],
+                        [5, 5]
+                    ]
+                },
+                "input": {
+                    "keyboard": {
+                        "repeat_rate": 25,
+                        "repeat_delay": 600,
+                        "xkb_layout": "us",
+                        "xkb_variant": "",
+                        "xkb_options": ""
+                    },
+                    "touchpad": {
+                        "accel_profile": "adaptive",
+                        "accel_speed": 0.0,
+                        "natural_scroll": false,
+                        "tap_to_click": true,
+                        "drag_lock": false,
+                        "disable_while_typing": true,
+                        "middle_emulation": false
+                    },
+                    "mouse": {
+                        "accel_profile": "adaptive",
+                        "accel_speed": 0.0,
+                        "natural_scroll": false
+                    }
+                },
+                "keybindings": [],
+                "window_rules": [],
+                "environment": {
+                    "XDG_CURRENT_DESKTOP": "niri",
+                    "XDG_SESSION_DESKTOP": "niri",
+                    "XDG_SESSION_TYPE": "wayland",
+                    "MOZ_ENABLE_WAYLAND": "1",
+                    "QT_QPA_PLATFORM": "wayland",
+                    "GTK_USE_PORTAL": "1",
+                    "NIXOS_OZONE_WL": "1",
+                    "ELECTRON_OZONE_PLATFORM_HINT": "wayland",
+                    "XCURSOR_THEME": "Adwaita",
+                    "XCURSOR_SIZE": "24"
+                },
+                "spawn_at_startup": [
+                    {
+                        "command": ["waybar"]
+                    },
+                    {
+                        "command": ["nm-applet", "--indicator"]
+                    },
+                    {
+                        "command": ["blueman-applet"]
+                    }
+                ],
+                "cursor": {
+                    "theme": "Adwaita",
+                    "size": 24
+                },
+                "prefer_no_csd": true,
+                "hotkey_overlay": {
+                    "skip_at_startup": true
+                }
+            }
+        },
+        "waybar": {
+            "version": "1.0.0",
+            "enabled": true,
+            "debug": false,
+            "service": "waybar",
+            "settings": {
+                "layer": "top",
+                "position": "top",
+                "height": 30,
+                "width": "request",
+                "spacing": 4,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "margin_left": 0,
+                "margin_right": 0,
+                "modules_left": [
+                    "niri/workspaces"
+                ],
+                "modules_center": [
+                    "clock"
+                ],
+                "modules_right": [
+                    "pulseaudio",
+                    "network",
+                    "battery",
+                    "tray"
+                ],
+                "startup_command": "",
+                "reload_style_on_change": false,
+                "fixed_center": true,
+                "passthrough": false,
+                "ipc": true,
+                "include": [],
+                "modules": {
+                    "niri/workspaces": {
+                        "format": "{name}",
+                        "format-icons": {
+                            "1": "一",
+                            "2": "二",
+                            "3": "三",
+                            "4": "四",
+                            "5": "五",
+                            "6": "六",
+                            "7": "七",
+                            "8": "八",
+                            "9": "九",
+                            "10": "十"
+                        },
+                        "persistent_workspaces": {
+                            "1": [],
+                            "2": [],
+                            "3": [],
+                            "4": [],
+                            "5": [],
+                            "6": [],
+                            "7": [],
+                            "8": [],
+                            "9": []
+                        }
+                    },
+                    "clock": {
+                        "format": "{:%H:%M}",
+                        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
+                        "tooltip-format": "<big>{:%Y %B}</big>\\n<tt><small>{calendar}</small></tt>",
+                        "calendar": {
+                            "mode": "month",
+                            "mode-mon-col": 3,
+                            "weeks-pos": "right",
+                            "on-scroll": 1,
+                            "on-click-right": "mode",
+                            "format": {
+                                "months": "<span color='#ffead3'><b>{}</b></span>",
+                                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+                            }
+                        },
+                        "actions": {
+                            "on-click-right": "mode",
+                            "on-click-forward": "tz_up",
+                            "on-click-backward": "tz_down",
+                            "on-scroll-up": "shift_up",
+                            "on-scroll-down": "shift_down"
+                        }
+                    },
+                    "pulseaudio": {
+                        "format": "{volume}% {icon}",
+                        "format-bluetooth": "{volume}% {icon}",
+                        "format-bluetooth-muted": " {icon}",
+                        "format-muted": "",
+                        "format-source": "{volume}% {icon}",
+                        "format-source-muted": "",
+                        "format-icons": {
+                            "headphone": "",
+                            "hands-free": "",
+                            "headset": "",
+                            "phone": "",
+                            "portable": "",
+                            "car": "",
+                            "default": [
+                                "",
+                                "",
+                                ""
+                            ]
+                        },
+                        "on-click": "pavucontrol",
+                        "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+                        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+                        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+                        "scroll-step": 5,
+                        "max_volume": 150,
+                        "reverse-scrolling": false,
+                        "tooltip": true,
+                        "tooltip-format": "{desc} ({volume}%)"
+                    },
+                    "network": {
+                        "interface": "",
+                        "format-wifi": "{essid} ({signalStrength}%) ",
+                        "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+                        "format-linked": "{ifname} (No IP) 󰈂",
+                        "format-disconnected": "Disconnected ⚠",
+                        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+                        "tooltip-format": "{ifname}\\n{ipaddr}/{cidr}\\n↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+                        "tooltip-format-wifi": "{essid} ({signalStrength}%) \\n{ifname}\\n{ipaddr}/{cidr}\\n↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+                        "tooltip-format-ethernet": "{ifname}\\n{ipaddr}/{cidr}\\n↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+                        "tooltip-format-disconnected": "Disconnected",
+                        "max_length": 50,
+                        "on-click": "nm-connection-editor",
+                        "on-click-right": "nm-applet",
+                        "interval": 5
+                    },
+                    "battery": {
+                        "states": {
+                            "good": 95,
+                            "warning": 30,
+                            "critical": 15
+                        },
+                        "format": "{capacity}% {icon}",
+                        "format-charging": "{capacity}% ",
+                        "format-plugged": "{capacity}% ",
+                        "format-alt": "{time} {icon}",
+                        "format-good": "{capacity}% {icon}",
+                        "format-full": "{capacity}% {icon}",
+                        "format-warning": "{capacity}% {icon}",
+                        "format-critical": "{capacity}% {icon}",
+                        "format-icons": [
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        "tooltip-format": "{time} {capacity}% {power}W",
+                        "tooltip-format-charging": "{time} {capacity}% {power}W",
+                        "tooltip-format-plugged": "{time} {capacity}% {power}W",
+                        "tooltip-format-not-charging": "{time} {capacity}% {power}W",
+                        "tooltip-format-full": "{capacity}% Full",
+                        "on-click": "",
+                        "on-click-middle": "",
+                        "on-click-right": "",
+                        "on-scroll-up": "",
+                        "on-scroll-down": "",
+                        "interval": 60,
+                        "design_capacity": false,
+                        "full_threshold": 95,
+                        "low_threshold": 15,
+                        "bat": "BAT0",
+                        "adapter": "ADP0",
+                        "time_format": "{H}h{M}m"
+                    },
+                    "tray": {
+                        "icon-size": 21,
+                        "spacing": 10,
+                        "reverse-direction": false,
+                        "scroll-step": 5,
+                        "on-click": "",
+                        "on-click-middle": "",
+                        "on-click-right": "",
+                        "on-scroll-up": "",
+                        "on-scroll-down": "",
+                        "tooltip-format": "{tooltip}",
+                        "show-passive-items": true,
+                        "smooth-scrolling-threshold": 0
+                    }
+                },
+                "bar-id": "",
+                "output": [],
+                "exclusive": true,
+                "gtk-layer-shell": true
+            }
+        },
+        "wofi": {
+            "version": "1.0.0",
+            "enabled": true,
+            "debug": false,
+            "service": "wofi",
+            "settings": {
+                "mode": "drun",
+                "term": "foot",
+                "exec": "",
+                "exec_search": "",
+                "prompt": "Apps",
+                "filter": true,
+                "allow_images": true,
+                "allow_markup": true,
+                "insensitive": true,
+                "parse_search": true,
+                "hide_scroll": false,
+                "normal_window": false,
+                "monitor": 0,
+                "layers": "top",
+                "xoffset": 0,
+                "yoffset": 0,
+                "width": "50%",
+                "height": "40%",
+                "location": "center",
+                "orientation": "vertical",
+                "halign": "fill",
+                "valign": "fill",
+                "line_wrap": "off",
+                "dynamic_lines": false,
+                "num_lines": 10,
+                "columns": 1,
+                "term_size": 10,
+                "display_columns": 1,
+                "display_row": 1,
+                "sort_order": "default",
+                "gtk_dark": true,
+                "color": {
+                    "background": "#282828ff",
+                    "foreground": "#ebdbb2ff",
+                    "border": "#458588ff",
+                    "selected": "#458588ff",
+                    "selected_foreground": "#282828ff",
+                    "window": "#458588ff",
+                    "separator": "#665c54ff"
+                },
+                "color_window": "#458588ff",
+                "color_border": "#458588ff",
+                "color_separator": "#665c54ff",
+                "key_expand": "Tab",
+                "key_nav_up": "Up",
+                "key_nav_down": "Down",
+                "key_nav_left": "Left",
+                "key_nav_right": "Right",
+                "key_submit": "Return",
+                "key_exit": "Escape",
+                "key_delete": "BackSpace",
+                "key_delete_word": "Control-BackSpace",
+                "key_delete_line": "Control-u",
+                "key_pgup": "Page_Up",
+                "key_pgdn": "Page_Down",
+                "key_home": "Home",
+                "key_end": "End",
+                "key_row_first": "Home",
+                "key_row_last": "End",
+                "key_row_up": "Up",
+                "key_row_down": "Down",
+                "key_page_first": "Home",
+                "key_page_last": "End",
+                "key_page_up": "Page_Up",
+                "key_page_down": "Page_Down",
+                "search_field": true,
+                "password_field": false,
+                "lines": 10,
+                "columns": 1,
+                "halign": "fill",
+                "valign": "fill",
+                "halign_label": "left",
+                "valign_label": "center",
+                "halign_content": "left",
+                "valign_content": "center",
+                "drun_display_generic": true,
+                "drun_display_actions": false,
+                "drun_display_no_generic": false,
+                "drun_username": "",
+                "drun_desktop": [],
+                "run_exec": "",
+                "run_exec_search": "",
+                "run_list_command": "",
+                "run_file_exec": "",
+                "run_match": "fuzzy",
+                "run_actions": true,
+                "dmenu_print_index": false,
+                "dmenu_allow_markup": false,
+                "dmenu_allow_images": false,
+                "combi_hide_mode": false,
+                "cache_file": "",
+                "config_file": "",
+                "style": "",
+                "css_file": "",
+                "widget_list": "",
+                "log_file": "",
+                "log_level": "INFO",
+                "show_all": false,
+                "single_pass": false,
+                "exec_args": [],
+                "defer": false,
+                "wait_for": "",
+                "pre_display_cmd": "",
+                "post_display_cmd": "",
+                "pre_select_cmd": "",
+                "post_select_cmd": ""
+            }
+        }
+    },
+    "global": {
+        "log_level": "info",
+        "auto_start": true,
+        "config_validation": true,
+        "hardware_detection": true,
+        "theme": {
+            "name": "voidance",
+            "variant": "dark",
+            "accent_color": "#458588"
+        }
+    }
+}

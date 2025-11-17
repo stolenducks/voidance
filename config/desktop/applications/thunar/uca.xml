@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+  <!--
+    Thunar Custom Actions Configuration
+    Default custom actions for Voidance desktop environment
+    Educational: Each action includes explanation for learning
+  -->
+
+  <!-- =============================================================================
+       TERMINAL ACTIONS
+       ============================================================================= -->
+
+  <!-- Open terminal in current directory -->
+  <action>
+    <icon>utilities-terminal</icon>
+    <name>Open Terminal Here</name>
+    <command>ghostty --working-directory=%f</command>
+    <description>Open Ghostty terminal in the current directory</description>
+    <patterns>*</patterns>
+    <startup-notify/>
+    <directories/>
+  </action>
+
+  <!-- Open terminal in selected directory -->
+  <action>
+    <icon>utilities-terminal</icon>
+    <name>Open Terminal In Directory</name>
+    <command>ghostty --working-directory=%d</command>
+    <description>Open Ghostty terminal in the selected directory</description>
+    <patterns>*</patterns>
+    <startup-notify/>
+    <directories/>
+  </action>
+
+  <!-- =============================================================================
+       FILE OPERATIONS
+       ============================================================================= -->
+
+  <!-- Create new file -->
+  <action>
+    <icon>document-new</icon>
+    <name>Create New File</name>
+    <command>touch %f/new-file.txt</command>
+    <description>Create a new text file in the current directory</description>
+    <patterns>*</patterns>
+    <directories/>
+  </action>
+
+  <!-- Copy file path -->
+  <action>
+    <icon>edit-copy</icon>
+    <name>Copy File Path</name>
+    <command>echo %f | wl-copy</command>
+    <description>Copy the full file path to clipboard</description>
+    <patterns>*</patterns>
+    <other-files/>
+    <text-files/>
+    <image-files/>
+    <audio-files/>
+    <video-files/>
+    <applications/>
+  </action>
+
+  <!-- =============================================================================
+       SEARCH AND FIND
+       ============================================================================= -->
+
+  <!-- Find in files -->
+  <action>
+    <icon>edit-find</icon>
+    <name>Find in Files</name>
+    <command>ghostty --working-directory=%d -e "grep -r \"\" ."</command>
+    <description>Search for text in files within this directory</description>
+    <patterns>*</patterns>
+    <directories/>
+  </action>
+
+  <!-- =============================================================================
+       COMPRESSION
+       ============================================================================= -->
+
+  <!-- Create archive -->
+  <action>
+    <icon>archive-insert</icon>
+    <name>Create Archive</name>
+    <command>tar -czf %f.tar.gz %F</command>
+    <description>Create a compressed archive of selected files</description>
+    <patterns>*</patterns>
+    <other-files/>
+    <text-files/>
+    <image-files/>
+    <audio-files/>
+    <video-files/>
+    <applications/>
+  </action>
+
+  <!-- Extract archive -->
+  <action>
+    <icon>archive-extract</icon>
+    <name>Extract Archive</name>
+    <command>tar -xzf %f -C %d</command>
+    <description>Extract compressed archive to current directory</description>
+    <patterns>*.tar.gz;*.tgz;*.tar.bz2;*.tbz2;*.tar.xz;*.txz;*.tar;*.zip;*.rar</patterns>
+    <other-files/>
+  </action>
+
+  <!-- =============================================================================
+       SYSTEM OPERATIONS
+       ============================================================================= -->
+
+  <!-- Open as root -->
+  <action>
+    <icon>dialog-password</icon>
+    <name>Open as Administrator</name>
+    <command>pkexec thunar %f</command>
+    <description>Open this directory with administrator privileges</description>
+    <patterns>*</patterns>
+    <directories/>
+  </action>
+
+  <!-- Show file information -->
+  <action>
+    <icon>dialog-information</icon>
+    <name>File Information</name>
+    <command>ghostty --working-directory=%d -e "ls -la %F"</command>
+    <description>Show detailed file information in terminal</description>
+    <patterns>*</patterns>
+    <other-files/>
+    <text-files/>
+    <image-files/>
+    <audio-files/>
+    <video-files/>
+    <applications/>
+  </action>
+
+  <!-- =============================================================================
+       DEVELOPMENT ACTIONS
+       ============================================================================= -->
+
+  <!-- Edit with Ghostty -->
+  <action>
+    <icon>text-editor</icon>
+    <name>Edit with Terminal Editor</name>
+    <command>ghostty --working-directory=%d -e "nano %f"</command>
+    <description>Edit file with nano text editor in terminal</description>
+    <patterns>*.txt;*.md;*.py;*.js;*.html;*.css;*.json;*.xml;*.sh;*.conf;*.config</patterns>
+    <text-files/>
+  </action>
+
+  <!-- Git status -->
+  <action>
+    <icon>git</icon>
+    <name>Git Status</name>
+    <command>ghostty --working-directory=%d -e "git status"</command>
+    <description>Show Git repository status</description>
+    <patterns>*</patterns>
+    <directories/>
+  </action>
+
+  <!-- =============================================================================
+       MULTIMEDIA ACTIONS
+       ============================================================================= -->
+
+  <!-- Set as wallpaper -->
+  <action>
+    <icon>preferences-desktop-wallpaper</icon>
+    <name>Set as Wallpaper</name>
+    <command>cp %f ~/.config/wallpaper.jpg</command>
+    <description>Set image as desktop wallpaper</description>
+    <patterns>*.jpg;*.jpeg;*.png;*.bmp;*.gif</patterns>
+    <image-files/>
+  </action>
+
+  <!-- =============================================================================
+       EDUCATIONAL NOTES
+       ============================================================================= -->
+
+  <!--
+    This custom actions configuration is designed to be educational:
+    - Each action has a clear, descriptive name
+    - Icons provide visual context for actions
+    - Actions are grouped by functionality
+    - Commands are simple and transparent
+    - Patterns ensure actions appear for appropriate file types
+
+    Learning tips:
+    - %f represents the selected file path
+    - %d represents the directory path
+    - %F represents multiple selected files
+    - wl-copy is the Wayland clipboard utility
+    - pkexec provides privilege escalation
+    - Ghostty is used for terminal operations
+
+    Customization:
+    - Add new actions by copying existing ones
+    - Modify commands to suit your workflow
+    - Change icons to match your theme
+    - Adjust patterns to control when actions appear
+    - Test actions before relying on them
+
+    Security considerations:
+    - Be careful with actions that use pkexec (administrator privileges)
+    - Validate file paths in custom scripts
+    - Test archive operations to prevent data loss
+    - Use absolute paths when necessary
+  -->
+</actions>

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Reboot
+Comment=Reboot the system
+Exec=sh -c 'systemctl reboot'
+Icon=system-reboot
+Terminal=false
+Categories=System;Reboot;
+Keywords=reboot;restart;system;
+StartupNotify=false

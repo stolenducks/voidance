@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Logout
+Comment=Logout from current session
+Exec=sh -c 'niri msg quit'
+Icon=system-log-out
+Terminal=false
+Categories=System;Logout;
+Keywords=logout;session;exit;
+StartupNotify=false

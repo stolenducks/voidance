@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# WirePlumber runit service script
+# Session manager for PipeWire
+# Part of Voidance Linux system services
+
+# Source function library if it exists
+if [ -r /etc/rc.conf ]; then
+    . /etc/rc.conf
+fi
+
+# Check if wireplumber binary exists
+if ! command -v wireplumber >/dev/null 2>&1; then
+    echo "WirePlumber binary not found"
+    exit 1
+fi
+
+# Create necessary directories
+mkdir -p /var/run/pipewire
+mkdir -p /etc/wireplumber
+
+# Set up environment
+export PATH="/usr/bin:/usr/sbin:/bin:/sbin"
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+
+# Start WirePlumber session manager
+echo "Starting WirePlumber session manager..."
+exec wireplumber 2>&1

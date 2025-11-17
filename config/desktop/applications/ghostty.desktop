@@ -1,0 +1,31 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Ghostty Terminal
+Name[en]=Ghostty Terminal
+Comment=A modern, fast, and feature-rich terminal emulator
+Comment[en]=A modern, fast, and feature-rich terminal emulator
+GenericName=Terminal Emulator
+GenericName[en]=Terminal Emulator
+Exec=ghostty %U
+Terminal=false
+X-MultipleArgs=false
+Icon=utilities-terminal
+StartupNotify=true
+StartupWMClass=ghostty
+Categories=System;TerminalEmulator;Utility;
+Keywords=terminal;shell;command;prompt;cmd;console;run;execute;
+MimeType=text/plain;text/x-shellscript;text/x-python;text/x-java;text/x-c;text/x-c++;application/x-shellscript;text/x-perl;text/x-ruby;
+Actions=NewWindow;NewTab;
+PrefersNonDefaultGPU=true
+DBusActivatable=true
+
+[Desktop Action NewWindow]
+Name=New Window
+Name[en]=New Window
+Exec=ghostty
+
+[Desktop Action NewTab]
+Name=New Tab
+Name[en]=New Tab
+Exec=ghostty --new-tab

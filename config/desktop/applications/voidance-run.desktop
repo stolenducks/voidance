@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Run Command
+Comment=Run a command
+Exec=wofi --show run
+Icon=system-run
+Terminal=false
+Categories=System;Terminal;
+Keywords=run;command;execute;
+StartupNotify=false
