@@ -78,40 +78,92 @@ Voidance Linux includes a comprehensive set of system services for desktop funct
 
 ### Quick Start
 
+#### Option 1: One-Command Deployment (Recommended)
+
+Transform any fresh Void Linux installation into Voidance with a single command:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/voidance/voidance/main/deploy-voidance.sh | sudo bash
+```
+
+**That's it!** After the deployment completes, reboot and enjoy Voidance.
+
+**What this does:**
+- Installs all 93 packages from 14 specifications
+- Configures all system services automatically
+- Sets up complete desktop environment
+- Validates installation for you
+- No manual configuration required
+
+**Requirements:**
+- Fresh Void Linux installation
+- Internet connectivity
+- 5GB+ free disk space
+- Root/sudo access
+
+#### Option 2: Manual Deployment
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/voidance/voidance.git
+   cd voidance
+   ```
+
+2. **Run deployment script**
+   ```bash
+   sudo ./deploy-voidance.sh
+   ```
+
+3. **Reboot and enjoy**
+   ```bash
+   sudo reboot
+   ```
+
+#### Option 3: Download Pre-built Voidance ISO
+
 1. **Download Voidance Linux ISO**
    ```bash
    # Get the latest ISO from releases
    wget https://github.com/voidance/voidance/releases/latest/voidance-linux.iso
    ```
 
-2. **Create Bootable Media**
+2. **Create Bootable USB**
    ```bash
-   # For USB drives
-   dd if=voidance-linux.iso of=/dev/sdX bs=4M status=progress
+   # On Linux
+   sudo dd if=voidance-linux.iso of=/dev/sdX bs=4M status=progress sync
+   
+   # On macOS
+   sudo dd if=voidance-linux.iso of=/dev/rdiskX bs=1m
    ```
 
 3. **Boot and Install**
-   - Boot from the USB drive
-   - Follow the installation wizard
-   - Configure user accounts and settings
+   - Insert USB into target computer
+   - Boot from USB drive
+   - Voidance is pre-installed with all features!
 
-### Post-Installation Setup
+### What's Included in Voidance ISO
 
-After installation, run the system services setup:
+The customized Voidance ISO includes:
+- ✅ **93 packages** from 14 specifications
+- ✅ **Audio Services** - PipeWire, WirePlumber, rtkit
+- ✅ **Desktop Integration** - XDG, DBus, Seatd
+- ✅ **Display Manager** - SDDM with Wayland support
+- ✅ **File Manager** - Thunar with plugins
+- ✅ **Font Theming** - Noto fonts with proper configuration
+- ✅ **Idle Lock** - Swaylock and Swayidle configured
+- ✅ **Network Services** - NetworkManager pre-configured
+- ✅ **Niri Compositor** - Primary Wayland compositor
+- ✅ **Notification System** - Mako with libnotify
+- ✅ **Session Management** - Elogind and PolKit
+- ✅ **Session Switching** - Greetd with WLGreet
+- ✅ **Sway Compositor** - Fallback compositor
+- ✅ **Terminal Emulator** - Ghostty, Foot, Alacritty
+- ✅ **Waybar Status Bar** - Configured and themed
+- ✅ **Wofi Launcher** - Application launcher
 
-```bash
-# Install system services
-sudo ./packages/system-services.sh install
+### No Post-Installation Required
 
-# Configure services
-sudo ./scripts/setup-pam.sh
-sudo ./scripts/setup-network-permissions.sh
-sudo ./scripts/setup-audio-permissions.sh
-sudo ./scripts/setup-idle-management.sh
-
-# Start all services
-sudo ./scripts/start-system-services.sh start
-```
+Unlike traditional Void Linux installations, Voidance comes with everything pre-configured. Just boot and use!
 
 ## Configuration
 

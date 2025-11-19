@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@fission-ai/openspec": "^0.15.0"
+  }
+}

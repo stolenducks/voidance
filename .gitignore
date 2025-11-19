@@ -1,0 +1,46 @@
+# Voidance Build Artifacts and Temporary Files
+
+# Work directory (build artifacts)
+/work/
+*.iso
+*.img
+*.squashfs
+*.tar.gz
+*.xz
+*.zst
+
+# Package downloads
+/downloads/
+/cache/
+
+# Temporary files
+*.tmp
+*.log
+*.cache
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (already have package-lock)
+node_modules/
+
+# Build outputs
+/build/
+/dist/
+/output/
+
+# Checksums (generated)
+*.sha256
+*.md5
+
+# Mount points
+/mount/
+/mnt/
