@@ -251,11 +251,15 @@ configure_services() {
     )
     
     for service in "${services[@]}"; do
-        log_info "Enabling service: $service"
-        if ln -sf "/etc/sv/$service" "/var/service/" 2>/dev/null; then
-            log_success "Enabled $service"
+        if [[ -L "/var/service/$service" ]]; then
+            log_success "Service $service already enabled"
         else
-            log_warning "Failed to enable $service (may already be enabled)"
+            log_info "Enabling service: $service"
+            if ln -sf "/etc/sv/$service" "/var/service/" 2>/dev/null; then
+                log_success "Enabled $service"
+            else
+                log_warning "Failed to enable $service"
+            fi
         fi
     done
     
@@ -325,7 +329,9 @@ validate_installation() {
     # Check services
     local critical_services=("dbus" "elogind" "NetworkManager")
     for service in "${critical_services[@]}"; do
-        if sv status "$service" >/dev/null 2>&1; then
+        local status_output
+        status_output=$(sv status "$service" 2>&1 | head -n 1)
+        if echo "$status_output" | grep -q "^run:"; then
             log_success "✓ $service is running"
         else
             log_warning "⚠ $service is not running (may need reboot)"
