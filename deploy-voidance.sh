@@ -108,12 +108,15 @@ validate_system() {
     local errors=0
     
     # Check if this is Void Linux
-    if [[ ! -f /etc/void-release ]]; then
+    if [[ -f /etc/os-release ]] && grep -q "void" /etc/os-release 2>/dev/null; then
+        log_success "Void Linux detected"
+        local void_version=$(grep "PRETTY_NAME" /etc/os-release | cut -d'"' -f2)
+        log_info "Version: $void_version"
+    elif command -v xbps-install >/dev/null 2>&1; then
+        log_success "Void Linux detected (xbps found)"
+    else
         log_error "This system is not Void Linux"
         errors=$((errors + 1))
-    else
-        log_success "Void Linux detected"
-        log_info "Version: $(cat /etc/void-release)"
     fi
     
     # Check if xbps is available
